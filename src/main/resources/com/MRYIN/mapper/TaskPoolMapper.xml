@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.MRYIN.mapper.TaskPoolMapper">
+    <insert id="addTask" parameterType="com.MRYIN.pojo.Task">
+        insert into task
+            (
+                TK_PRJCode,
+                TK_PRJName,
+                TK_TaskType,
+                TK_CODE,
+                TK_NAME,
+                TK_START_DATE,
+                TK_END_DATE,
+                TK_RESPONER,
+                TK_ACTUAL_STARTDAY,
+                TK_ACTUAL_ENDDAY,
+                TK_PROGRESS,
+                TK_DETAILS
+            )
+        values
+            (
+                #{TK_PRJCode},
+                #{TK_PRJName},
+                #{TK_TaskType},
+                #{TK_CODE},
+                #{TK_NAME},
+                #{TK_START_DATE},
+                #{TK_END_DATE},
+                #{TK_RESPONER},
+                #{TK_ACTUAL_STARTDAY},
+                #{TK_ACTUAL_ENDDAY},
+                #{TK_PROGRESS},
+                #{TK_DETAILS}
+            )
+    </insert>
+
+
+    <update id="updateTask" parameterType="com.MRYIN.pojo.Task">
+        update
+            task
+        set
+            TK_TaskType = #{TK_TaskType},
+            TK_CODE = #{TK_CODE},
+            TK_NAME = #{TK_NAME},
+            TK_START_DATE = #{TK_START_DATE},
+            TK_END_DATE = #{TK_END_DATE},
+            TK_RESPONER = #{TK_RESPONER},
+            TK_ACTUAL_STARTDAY = #{TK_ACTUAL_STARTDAY},
+            TK_ACTUAL_ENDDAY = #{TK_ACTUAL_ENDDAY},
+            TK_STATUS = #{TK_STATUS},
+            TK_PROGRESS = #{TK_PROGRESS},
+            TK_DETAILS = #{TK_DETAILS}
+        where
+            TK_ID = #{TK_ID}
+    </update>
+
+
+    <select id="queryTaskByTK_ID" resultType="com.MRYIN.pojo.Task" parameterType="java.lang.Integer">
+            select
+                TK_ID,
+                TK_PRJCode,
+                TK_PRJName,
+                TK_TaskType,
+                TK_CODE,
+                TK_NAME,
+                TK_START_DATE,
+                TK_END_DATE,
+                TK_RESPONER,
+                TK_ACTUAL_STARTDAY,
+                TK_ACTUAL_ENDDAY,
+                TK_STATUS,
+                TK_PROGRESS,
+                TK_DETAILS
+            from
+                task
+            where
+                TK_ID = #{TK_ID}
+    </select>
+
+    <select id="queryAllTask" resultType="com.MRYIN.pojo.Task">
+            select
+                TK_ID,
+                TK_PRJCode,
+                TK_PRJName,
+                TK_TaskType,
+                TK_CODE,
+                TK_NAME,
+                TK_START_DATE,
+                TK_END_DATE,
+                TK_RESPONER,
+                TK_ACTUAL_STARTDAY,
+                TK_ACTUAL_ENDDAY,
+                TK_STATUS,
+                TK_PROGRESS,
+                TK_DETAILS
+            from
+                task
+    </select>
+
+    <select id="queryAllTaskByLimit" resultType="com.MRYIN.pojo.Task" parameterType="java.lang.Integer">
+            select
+                TK_ID,
+                TK_PRJCode,
+                TK_PRJName,
+                TK_TaskType,
+                TK_CODE,
+                TK_NAME,
+                TK_START_DATE,
+                TK_END_DATE,
+                TK_RESPONER,
+                TK_ACTUAL_STARTDAY,
+                TK_ACTUAL_ENDDAY,
+                TK_STATUS,
+                TK_PROGRESS,
+                TK_DETAILS
+            from
+                task
+            limit
+                #{page},#{limit}
+    </select>
+
+
+    <select id="queryBySearch" resultType="com.MRYIN.pojo.Task" parameterType="java.lang.String">
+            select
+                TK_ID,
+                TK_PRJCode,
+                TK_PRJName,
+                TK_TaskType,
+                TK_CODE,
+                TK_NAME,
+                TK_START_DATE,
+                TK_END_DATE,
+                TK_RESPONER,
+                TK_ACTUAL_STARTDAY,
+                TK_ACTUAL_ENDDAY,
+                TK_STATUS,
+                TK_PROGRESS,
+                TK_DETAILS
+            from
+                task
+            where
+                TK_TaskType
+            LIKE CONCAT('%',#{search_3},'%')
+            AND  CONCAT(TK_PRJCode,TK_PRJName,TK_CODE)
+            LIKE CONCAT('%',#{search_4},'%')
+    </select>
+
+    <!--查询所有分类的任务-->
+    <select id="queryTaskByEchart" parameterType="java.lang.String" resultType="java.lang.Integer">
+            select count(*) from task where TK_TaskType like concat('%',#{TK_TaskType},'%')
+    </select>
+
+    <!--查询所有分类的任务并且状态为0-->
+    <select id="queryTaskByEchartBySTATUS"  parameterType="java.lang.String" resultType="java.lang.Integer">
+        select count(*) from task where TK_TaskType like concat('%',#{TK_TaskType},'%')
+        and TK_STATUS = 0
+    </select>
+</mapper>

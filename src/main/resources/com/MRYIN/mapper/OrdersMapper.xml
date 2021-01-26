@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.MRYIN.mapper.OrdersMapper">
+    <insert id="addOrder">
+        insert into orders(
+            PO_CUSTOMER,
+            PO_FullNameCustomer,
+            PO_NAME,
+            PO_PROTYPE,
+            PO_Details,
+            PO_DeliveyA,
+            PO_ShipTo,
+            PO_SALESMAN,
+            PO_SUMS,
+            PO_ARRIVED_SUMS,
+            PO_PAYMENT_TIMES,
+            PO_ARRIVED_TIMES,
+            PO_AmountOutTax,
+            PO_Digou,
+            PO_NOTE,
+            PO_CREATED_TIME
+        )
+        values
+            (
+                #{PO_CUSTOMER},
+                #{PO_FullNameCustomer,},
+                #{PO_NAME},
+                #{PO_PROTYPE},
+                #{PO_Details},
+                #{PO_DeliveyA},
+                #{PO_ShipTo},
+                #{PO_SALESMAN},
+                #{PO_SUMS},
+                #{PO_ARRIVED_SUMS},
+                #{PO_PAYMENT_TIMES},
+                #{PO_ARRIVED_TIMES},
+                #{PO_AmountOutTax},
+                #{PO_Digou},
+                #{PO_NOTE},
+                #{PO_CREATED_TIME}
+            )
+    </insert>
+
+
+    <delete id="deleteOrderByPO_ID">
+        delete from orders where PO_ID = #{PO_ID}
+    </delete>
+
+
+    <update id="updateOrder">
+        update orders set
+            PO_CUSTOMER = #{PO_CUSTOMER},
+            PO_FullNameCustomer = #{PO_FullNameCustomer},
+            PO_NAME = #{PO_NAME},
+            PO_PRJCODE = #{PO_PRJCODE},
+            PO_PROTYPE = #{PO_PROTYPE},
+            PO_Details = #{PO_Details},
+            PO_DeliveyA = #{PO_DeliveyA},
+            PO_ShipTo = #{PO_ShipTo},
+            PO_SALESMAN = #{PO_SALESMAN},
+            PO_SUMS = #{PO_SUMS},
+            PO_ARRIVED_SUMS = #{PO_ARRIVED_SUMS},
+            PO_PAYMENT_TIMES = #{PO_PAYMENT_TIMES},
+            PO_ARRIVED_TIMES = #{PO_ARRIVED_TIMES},
+            PO_AmountOutTax = #{PO_AmountOutTax},
+            PO_Digou = #{PO_Digou},
+            PO_NOTE = #{PO_NOTE},
+            PO_CREATED_TIME = #{PO_CREATED_TIME}
+        where
+            PO_ID = #{PO_ID}
+    </update>
+
+    <select id="queryOrderByPO_ID" resultType="com.MRYIN.pojo.Orders" parameterType="java.lang.Integer">
+        select * from orders where PO_ID = #{PO_ID}
+    </select>
+
+    <select id="queryAllOrders" resultType="com.MRYIN.pojo.Orders">
+        select
+            PO_ID,
+            PO_CUSTOMER,
+            PO_FullNameCustomer,
+            PO_NAME,
+            PO_PRJCODE,
+            PO_PROTYPE,
+            PO_Details,
+            PO_DeliveyA,
+            PO_ShipTo,
+            PO_SALESMAN,
+            PO_SUMS,
+            PO_ARRIVED_SUMS,
+            PO_PAYMENT_TIMES,
+            PO_ARRIVED_TIMES,
+            PO_AmountOutTax,
+            PO_Digou,
+            PO_NOTE,
+            PO_CREATED_TIME
+        from
+            orders
+
+    </select>
+
+    <select id="queryAllOrdersByLimit" resultType="com.MRYIN.pojo.Orders" parameterType="java.lang.Integer">
+        select
+            PO_ID,
+            PO_CUSTOMER,
+            PO_FullNameCustomer,
+            PO_NAME,
+            PO_PRJCODE,
+            PO_PROTYPE,
+            PO_Details,
+            PO_DeliveyA,
+            PO_ShipTo,
+            PO_SALESMAN,
+            PO_SUMS,
+            PO_ARRIVED_SUMS,
+            PO_PAYMENT_TIMES,
+            PO_ARRIVED_TIMES,
+            PO_AmountOutTax,
+            PO_Digou,
+            PO_NOTE,
+            PO_CREATED_TIME
+        from
+            orders
+        limit
+           #{page},#{limit}
+
+    </select>
+
+    <select id="queryOrderByEchart" resultType="java.lang.Integer">
+        SELECT
+            COUNT(*)
+        FROM
+            orders
+    </select>
+
+    <select id="queryBuSearch" resultType="com.MRYIN.pojo.Orders" parameterType="java.lang.String">
+        SELECT
+            *
+        FROM
+            orders
+        WHERE
+            1=1
+        and
+            CONCAT(`PO_ID`,`PO_CUSTOMER`,`PO_PRJCODE`,`PO_SALESMAN`)
+        LIKE
+            CONCAT('%',#{search},'%')
+
+    </select>
+
+
+
+</mapper>

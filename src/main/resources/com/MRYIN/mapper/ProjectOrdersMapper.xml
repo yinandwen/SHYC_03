@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.MRYIN.mapper.ProjectOrdersMapper">
+    <insert id="addProject">
+        insert into project(
+            ORDER_NAME,
+            PRJ_DETAILS,
+            PRJ_MANAGER_ID,
+            PRJ_START_DATE,
+            PRJ_DELIVERY_DATE,
+            PRJ_SITUATION,
+            PRJ_ALL_TASKS
+        )
+    </insert>
+</mapper>

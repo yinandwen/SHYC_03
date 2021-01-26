@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.MRYIN.mapper.TaskMapper">
+    <insert id="addTask" parameterType="com.MRYIN.pojo.Task">
+        insert into task
+            (TK_PRJCode,
+            TK_QuestionID,
+            TK_CODE,
+            TK_Department,
+            TK_START_DATE,
+            TK_END_DATE,
+            TK_RESPONER,
+            TK_DETAILS,
+            TK_CREATED_TIME,
+            TK_CREATED_BY)
+        values
+            (#{TK_PRJCode},
+            #{TK_QuestionID},
+            #{TK_CODE},
+            #{TK_Department},
+            #{TK_START_DATE},
+            #{TK_END_DATE},
+            #{TK_RESPONER},
+            #{TK_DETAILS},
+            #{TK_CREATED_TIME},
+            #{TK_CREATED_BY})
+    </insert>
+
+    <delete id="deleteTask" parameterType="java.lang.Integer">
+        delete from task where TK_ID = #{TK_ID}
+    </delete>
+
+    <update id="updateTask" parameterType="com.MRYIN.pojo.Task">
+        update task set
+            TK_PRJCode = #{TK_PRJCode},
+            TK_QuestionID = #{TK_QuestionID},
+            TK_CODE = #{TK_CODE},
+            TK_Department = #{TK_Department},
+            TK_START_DATE = #{TK_START_DATE},
+            TK_END_DATE = #{TK_END_DATE},
+            TK_RESPONER = #{TK_RESPONER},
+            TK_DETAILS = #{TK_DETAILS},
+            TK_UPDATED_TIME = #{TK_UPDATED_TIME},
+            TK_CREATED_BY = #{TK_CREATED_BY}
+        where
+            TK_ID = #{TK_ID}
+        order by
+            TK_UPDATED_TIME
+    </update>
+
+    <update id="updateStatus" parameterType="com.MRYIN.pojo.Task">
+        update task set
+            TK_PRJCode = #{TK_PRJCode},
+            TK_QuestionID = #{TK_QuestionID},
+            TK_CODE = #{TK_CODE},
+            TK_Department = #{TK_Department},
+            TK_START_DATE = #{TK_START_DATE},
+            TK_END_DATE = #{TK_END_DATE},
+            TK_RESPONER = #{TK_RESPONER},
+            TK_DETAILS = #{TK_DETAILS},
+            TK_STATUS = #{TK_STATUS},
+            TK_UPDATED_TIME = #{TK_UPDATED_TIME},
+            TK_CREATED_BY = #{TK_CREATED_BY}
+        where
+            TK_ID = #{TK_ID}
+    </update>
+
+    <select id="AllTaskByTK_PRJCode" resultType="com.MRYIN.pojo.Task" parameterType="java.lang.String">
+        SELECT
+            TK_ID,
+            TK_PRJCode,
+            TK_QuestionID,
+            TK_CODE,
+            TK_NAME,
+            TK_Department,
+            TK_START_DATE,
+            TK_END_DATE,
+            TK_RESPONER,
+            TK_DETAILS,
+            TK_STATUS,
+            TK_CREATED_TIME,
+            TK_UPDATED_TIME,
+            TK_CREATED_BY,
+            TK_UPDATED_BY
+        FROM
+            task
+        WHERE
+            TK_PRJCode LIKE concat('%',#{TK_PRJCode},'%')
+        order by
+            IFNULL(TK_UPDATED_TIME,TK_CREATED_TIME) desc
+    </select>
+
+    <select id="AllTask" resultType="com.MRYIN.pojo.Task">
+        SELECT
+            TK_ID,
+            TK_PRJCode,
+            TK_QuestionID,
+            TK_CODE,
+            TK_NAME,
+            TK_Department,
+            TK_START_DATE,
+            TK_END_DATE,
+            TK_RESPONER,
+            TK_DETAILS,
+            TK_STATUS,
+            TK_CREATED_TIME,
+            TK_UPDATED_TIME,
+            TK_CREATED_BY,
+            TK_UPDATED_BY
+        FROM
+            task
+        order by
+            IFNULL(TK_UPDATED_TIME,TK_CREATED_TIME) desc
+    </select>
+
+    <select id="getTaskByPRJCode" resultType="com.MRYIN.pojo.Task" parameterType="java.lang.Integer">
+        SELECT
+            TK_ID,
+            TK_PRJCode,
+            TK_QuestionID,
+            TK_CODE,
+            TK_NAME,
+            TK_Department,
+            TK_START_DATE,
+            TK_END_DATE,
+            TK_RESPONER,
+            TK_DETAILS,
+            TK_STATUS,
+            TK_CREATED_TIME,
+            TK_UPDATED_TIME,
+            TK_CREATED_BY,
+            TK_UPDATED_BY
+        FROM
+            task
+        where TK_ID = #{TK_ID}
+    </select>
+
+    <select id="AllTaskBySreach" resultType="com.MRYIN.pojo.Task" parameterType="java.lang.String">
+        SELECT
+            TK_ID,
+            TK_PRJCode,
+            TK_QuestionID,
+            TK_CODE,
+            TK_NAME,
+            TK_Department,
+            TK_START_DATE,
+            TK_END_DATE,
+            TK_RESPONER,
+            TK_DETAILS,
+            TK_STATUS,
+            TK_CREATED_TIME,
+            TK_UPDATED_TIME,
+            TK_CREATED_BY,
+            TK_UPDATED_BY
+        FROM
+            task
+        where
+            TK_PRJCode like concat('%',#{input},'%')
+        order by
+            TK_CREATED_TIME
+    </select>
+
+    <select id="AllTaskByDepartment" resultType="com.MRYIN.pojo.Task" parameterType="java.lang.String">
+        SELECT
+            TK_ID,
+            TK_PRJCode,
+            TK_QuestionID,
+            TK_CODE,
+            TK_NAME,
+            TK_Department,
+            TK_START_DATE,
+            TK_END_DATE,
+            TK_RESPONER,
+            TK_DETAILS,
+            TK_STATUS,
+            TK_CREATED_TIME,
+            TK_UPDATED_TIME,
+            TK_CREATED_BY,
+            TK_UPDATED_BY
+        FROM
+            task
+        where
+            TK_Department = #{TK_Department}
+        order by
+            TK_CREATED_TIME
+    </select>
+
+    <select id="taskByPRJCodeAndQuestionIDAndCODE" resultType="com.MRYIN.pojo.Task" parameterType="java.lang.String">
+        SELECT
+            TK_ID,
+            TK_PRJCode,
+            TK_QuestionID,
+            TK_CODE,
+            TK_NAME,
+            TK_Department,
+            TK_START_DATE,
+            TK_END_DATE,
+            TK_RESPONER,
+            TK_DETAILS,
+            TK_STATUS,
+            TK_CREATED_TIME,
+            TK_UPDATED_TIME,
+            TK_CREATED_BY,
+            TK_UPDATED_BY
+        FROM
+            task
+        where
+            TK_PRJCode = #{TK_PRJCode}
+        and
+            TK_QuestionID = #{TK_QuestionID}
+        and
+            TK_CODE = #{TK_CODE}
+    </select>
+
+
+    <select id="getAllUnfinishedTask" resultType="java.lang.Integer">
+        select count(*) from task where TK_STATUS = 0
+    </select>
+
+    <select id="getAllTaskByDate" parameterType="java.lang.String" resultType="com.MRYIN.pojo.Task">
+        SELECT * FROM task WHERE TK_START_DATE &gt; #{TK_START_TIME} AND TK_END_DATE &lt; #{TK_END_TIME}
+    </select>
+
+    <select id="getAllTaskByPRJCodeAndQuestionID" resultType="com.MRYIN.pojo.Task" parameterType="java.lang.String">
+        SELECT
+            TK_ID,
+            TK_PRJCode,
+            TK_QuestionID,
+            TK_CODE,
+            TK_NAME,
+            TK_Department,
+            TK_START_DATE,
+            TK_END_DATE,
+            TK_RESPONER,
+            TK_DETAILS,
+            TK_STATUS,
+            TK_CREATED_TIME,
+            TK_UPDATED_TIME,
+            TK_CREATED_BY,
+            TK_UPDATED_BY
+        FROM
+            task
+        where
+            TK_PRJCode = #{QS_PRJCode}
+        and
+            TK_QuestionID = #{QS_QuestionID}
+    </select>
+
+    <select id="queryAllTaskByLimit" resultType="com.MRYIN.pojo.Task" parameterType="java.lang.Integer">
+        SELECT
+            TK_ID,
+            TK_PRJCode,
+            TK_QuestionID,
+            TK_CODE,
+            TK_NAME,
+            TK_Department,
+            TK_START_DATE,
+            TK_END_DATE,
+            TK_RESPONER,
+            TK_DETAILS,
+            TK_STATUS,
+            TK_CREATED_TIME,
+            TK_UPDATED_TIME,
+            TK_CREATED_BY,
+            TK_UPDATED_BY
+        FROM
+            task
+        limit
+            #{page},#{limit}
+    </select>
+
+</mapper>

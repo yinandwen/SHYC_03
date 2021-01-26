@@ -1,0 +1,464 @@
+/*
+SQLyog Ultimate v9.60
+MySQL - 5.0.51b-community-nt : Database - ycdb101
+*********************************************************************
+*/
+
+
+/*!40101 SET NAMES utf8 */;
+
+/*!40101 SET SQL_MODE=''*/;
+
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+CREATE DATABASE /*!32312 IF NOT EXISTS*/`ycdb101` /*!40100 DEFAULT CHARACTER SET utf8 */;
+
+USE `ycdb101`;
+
+/*Table structure for table `desc` */
+
+DROP TABLE IF EXISTS `desc`;
+
+CREATE TABLE `desc` (
+  `id` int(11) NOT NULL auto_increment COMMENT 'id',
+  `projectId` int(11) NOT NULL COMMENT '项目id',
+  `problemType` varchar(32) default NULL COMMENT '问题类型',
+  `problemDesc` varchar(32) NOT NULL COMMENT '问题描述',
+  `projectManager` varchar(32) NOT NULL COMMENT '责任人',
+  `startDate` date NOT NULL COMMENT '项目开始日期',
+  `image` varchar(255) default NULL COMMENT '上传图片',
+  PRIMARY KEY  (`id`),
+  KEY `id` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=123456790 DEFAULT CHARSET=utf8;
+
+/*Data for the table `desc` */
+
+LOCK TABLES `desc` WRITE;
+
+insert  into `desc`(`id`,`projectId`,`problemType`,`problemDesc`,`projectManager`,`startDate`,`image`) values (1,123456,'马克风','发看房','打客服','2020-12-15','Lighthouse.jpg'),(2,3215,'放发电房','发放几块','开饭啦','2020-12-08','Penguins.jpg'),(10,8541,'装配','装配出错了','尹静姝','2020-12-02','Desert.jpg'),(13,1253,'加工','参数错误','尹家浩','2020-12-15','Chrysanthemum.jpg'),(14,8541,'装配','装配出错了','尹静姝','2020-12-08','Desert.jpg'),(16,34155,'装配','装配位置不对','尹家浩1111','2020-12-08','Penguins.jpg'),(17,957851,'加工','出问题了','发件方','2020-12-15','Desert.jpg'),(18,8541,'装配','装配出错了','尹静姝','2020-12-15','Chrysanthemum.jpg'),(31,34155,'装配','装配位置不对','尹家浩','2020-12-14','支持最新版.txt'),(81,15854,'加工','大师傅','大发','2020-12-02','7d35adf5-680b-4a53-89be-1cd7d64683b4Koala.jpg'),(123,1531,'其他','地方撒','的安抚','2020-12-15','5e9aff8e-486a-44b9-b7a1-4f6a895b486cPenguins.jpg'),(145,3265,'加工','第三方','发的','2020-12-08','Koala.jpg'),(146,1561,'其他','发放','阿道夫','2020-12-16',NULL),(147,15646,'其他','放大','打发','2020-12-08',NULL),(153,551231,'界面美化','不够美观','尹家浩','2020-12-05',NULL),(321,55431,'装配','位置不对','尹家浩','2020-12-07','Lighthouse.jpg'),(369,34155,'加工','参数错误','尹家浩1111','2020-12-10',NULL),(963,963,'加工','dsafd','safdasf','2020-12-17','958d8c95-8194-4e11-8908-b555942de745Koala.jpg'),(123456789,15615,'加工','dasfdas','fdasfsda','2020-12-14','136b1c0f-8d68-4b9e-a007-e101904fb746Lighthouse.jpg');
+
+UNLOCK TABLES;
+
+/*Table structure for table `employees` */
+
+DROP TABLE IF EXISTS `employees`;
+
+CREATE TABLE `employees` (
+  `US_ROLE_ID` int(11) default NULL COMMENT '担任职位',
+  `US_DEPT_ID` int(32) default NULL COMMENT '所属部门',
+  `US_ID` int(11) NOT NULL COMMENT '用户ID',
+  `US_CODE` varchar(32) NOT NULL COMMENT '工号',
+  `US_PASSWORD` varchar(32) default NULL COMMENT '密码',
+  `US_SALT` varchar(32) default NULL COMMENT '密码盐值',
+  `US_AVATAR` varchar(32) default NULL COMMENT '员工头像',
+  `US_NAME` varchar(32) default NULL COMMENT '员工姓名',
+  `US_ENG_NAME` varchar(32) default NULL COMMENT '英文名',
+  `US_IDCARD_NO` varchar(32) default NULL COMMENT '身份证号',
+  `US_MOBILE_PHONE` varchar(32) default NULL COMMENT '手机号',
+  `US_PHONE` varchar(32) default NULL COMMENT '公司短号',
+  `US_EMAIL` varchar(32) default NULL COMMENT '邮箱',
+  `US_SALARY` decimal(32,0) default NULL COMMENT '薪资',
+  `US_SALARY_CARD_NO` varchar(32) default NULL COMMENT '薪资卡',
+  `US_GENDER` varchar(5) default NULL COMMENT '性别',
+  `US_STATUS` varchar(32) default NULL COMMENT '状态',
+  `US_EDUCATION` varchar(32) default NULL COMMENT '学历',
+  `US_BIRTHDAY` date default NULL COMMENT '生日',
+  `US_LOADTICE` int(11) default NULL COMMENT '登录次数',
+  `US_ONLINE_TIME` time default NULL COMMENT '登录时长',
+  `US_LOAD_TIME` datetime default NULL COMMENT '登入时间',
+  `US_LEAVE_TIME` datetime default NULL COMMENT '登出时间',
+  `US_Apprevision` varchar(32) default NULL COMMENT '软件版本',
+  `US_REVISION` int(11) default NULL COMMENT '乐观锁',
+  `US_CREATED_BY` varchar(32) default NULL COMMENT '创建人',
+  `US_CREATED_TIME` datetime default NULL COMMENT '创建时间',
+  `US_UPDATED_BY` varchar(32) default NULL COMMENT '更新人',
+  `US_UPDATED_TIME` datetime default NULL COMMENT '更新时间',
+  PRIMARY KEY  (`US_ID`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `employees` */
+
+LOCK TABLES `employees` WRITE;
+
+UNLOCK TABLES;
+
+/*Table structure for table `orders` */
+
+DROP TABLE IF EXISTS `orders`;
+
+CREATE TABLE `orders` (
+  `PO_ID` int(11) NOT NULL auto_increment COMMENT '订单',
+  `PO_CUSTOMER` varchar(32) NOT NULL COMMENT '客户简称',
+  `PO_FullNameCustomer` varchar(255) default NULL COMMENT '客户全名',
+  `PO_NAME` varchar(128) NOT NULL COMMENT '订单名/外部项目名',
+  `PO_PRJCODE` varchar(32) default NULL COMMENT '项目号',
+  `PO_PROTYPE` varchar(32) default NULL COMMENT '产品类型',
+  `PO_Details` varchar(255) default NULL COMMENT '制作内容',
+  `PO_DeliveyA` varchar(128) default NULL COMMENT '预计交期--交期A',
+  `PO_ShipTo` varchar(255) default NULL COMMENT '交货地址',
+  `PO_SALESMAN` varchar(32) NOT NULL COMMENT '销售员',
+  `PO_CONTRACT_NO` varchar(32) default NULL COMMENT '合同号',
+  `PO_During` varchar(0) default NULL COMMENT '账期',
+  `PO_CONTRAC_DATE` date default NULL COMMENT '签订日期',
+  `PO_FILLING_DATE` varchar(32) default NULL COMMENT '归档日期',
+  `PO_SUMS` decimal(32,0) NOT NULL COMMENT '合同金额',
+  `PO_ARRIVED_SUMS` decimal(32,0) NOT NULL COMMENT '回款金额',
+  `PO_PAYMENT_TIMES` int(11) NOT NULL COMMENT '应收期数',
+  `PO_ARRIVED_TIMES` int(11) NOT NULL COMMENT '已付期数',
+  `PO_AREA` varchar(32) default NULL COMMENT '销售市场',
+  `PO_AmountOutTax` decimal(32,0) NOT NULL COMMENT '净值金额',
+  `PO_HowToPay` varbinary(128) default NULL COMMENT '结算方式',
+  `PO_ClearningForENC` varchar(255) default NULL COMMENT '设变结算',
+  `PO_SeverItem` varchar(128) default NULL COMMENT '服务要求',
+  `PO_Digou` varchar(255) NOT NULL COMMENT '代购设备',
+  `PO_NOTE` varchar(512) NOT NULL COMMENT '订单备注',
+  `PO_ApprovedTime` datetime default NULL COMMENT '批准时间',
+  `PO_REVISION` int(11) default NULL COMMENT '乐观锁',
+  `PO_CREATED_BY` varchar(32) default NULL COMMENT '创建人',
+  `PO_CREATED_TIME` datetime default NULL COMMENT '创建时间',
+  `PO_UPDATED_BY` varchar(32) default NULL COMMENT '更新人',
+  `PO_UPDATED_TIME` datetime default NULL COMMENT '更新时间',
+  PRIMARY KEY  (`PO_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8;
+
+/*Data for the table `orders` */
+
+LOCK TABLES `orders` WRITE;
+
+insert  into `orders`(`PO_ID`,`PO_CUSTOMER`,`PO_FullNameCustomer`,`PO_NAME`,`PO_PRJCODE`,`PO_PROTYPE`,`PO_Details`,`PO_DeliveyA`,`PO_ShipTo`,`PO_SALESMAN`,`PO_CONTRACT_NO`,`PO_During`,`PO_CONTRAC_DATE`,`PO_FILLING_DATE`,`PO_SUMS`,`PO_ARRIVED_SUMS`,`PO_PAYMENT_TIMES`,`PO_ARRIVED_TIMES`,`PO_AREA`,`PO_AmountOutTax`,`PO_HowToPay`,`PO_ClearningForENC`,`PO_SeverItem`,`PO_Digou`,`PO_NOTE`,`PO_ApprovedTime`,`PO_REVISION`,`PO_CREATED_BY`,`PO_CREATED_TIME`,`PO_UPDATED_BY`,`PO_UPDATED_TIME`) values (1,'上汽','上海汽车集团','订单名称','YC0001','汽车检具','制作内容',NULL,'交货地址','销售人员',NULL,NULL,NULL,NULL,'12000','12000',12,8,NULL,'10000',NULL,NULL,NULL,'代购设备','订单备注',NULL,NULL,NULL,'2021-01-13 14:50:12','MRYIN','2021-01-14 14:53:50'),(2,'上汽','上海汽车集团','订单名称','YC0002','汽车检具','制作内容',NULL,'交货地址','销售人员',NULL,NULL,NULL,NULL,'12000','12000',12,8,NULL,'10000',NULL,NULL,NULL,'代购设备','订单备注',NULL,NULL,NULL,'2021-01-14 14:49:51','MRWEN','2021-01-14 14:54:22'),(3,'上汽','上海汽车集团','订单名称','YC0003','汽车检具','制作内容',NULL,'交货地址','销售人员',NULL,NULL,NULL,NULL,'100000','100000',12,8,NULL,'100000',NULL,NULL,NULL,'代购设备','订单备注',NULL,NULL,NULL,'2021-01-15 12:34:04',NULL,NULL),(4,'上汽','上海汽车集团','订单名称','YC0004','项目类型','制作内容','2021-01-21','交货地址','销售人员',NULL,NULL,NULL,NULL,'120000','12000',12,8,NULL,'1200',NULL,NULL,NULL,'代购设别','订单备注',NULL,NULL,NULL,'2021-01-15 00:00:00',NULL,NULL),(5,'上汽','上海汽车集团','订单名称','YC0005','汽车检具','制作内容',NULL,'交货地址','销售人员',NULL,NULL,NULL,NULL,'12000','12000',12,8,NULL,'10000',NULL,NULL,NULL,'代购设备','订单备注',NULL,NULL,NULL,'2021-01-14 00:00:00',NULL,NULL),(6,'上汽','上海汽车集团','订单名称','YC0006','汽车检具','制作内容',NULL,'交货地址','销售人员',NULL,NULL,NULL,NULL,'12000','12000',12,8,NULL,'10000',NULL,NULL,NULL,'代购设备','订单备注',NULL,NULL,NULL,'2021-01-15 13:53:51',NULL,NULL),(7,'上汽','上海汽车集团','订单名称','YC0007','项目类型','制作内容',NULL,'交货地址','销售人员',NULL,NULL,NULL,NULL,'12000','12000',12,8,NULL,'10000',NULL,NULL,NULL,'代购设备','订单备注',NULL,NULL,NULL,'2021-01-16 00:00:00',NULL,NULL),(11,'上汽','上海汽车集团','订单名称','YC0011','汽车检具','制作内容',NULL,'交货地址','销售人员',NULL,NULL,NULL,NULL,'12000','12000',12,8,NULL,'10000',NULL,NULL,NULL,'代购设备','订单备注',NULL,NULL,NULL,'2021-01-15 00:00:00','MRWEN','2021-01-15 13:19:22'),(12,'上汽','上海汽车集团','订单名称','YC0012','汽车检具','制作内容',NULL,'交货地址','销售人员',NULL,NULL,NULL,NULL,'12000','12000',12,8,NULL,'10000',NULL,NULL,NULL,'代购设备','订单备注',NULL,NULL,NULL,'2021-01-15 00:00:00',NULL,NULL),(13,'上汽','上海汽车','订单名称','YC0013','项目类型','制作内容',NULL,'交货地址','销售人员',NULL,NULL,NULL,NULL,'12000','12000',12,8,NULL,'10000',NULL,NULL,NULL,'代购设备','订单备注',NULL,NULL,NULL,'2021-01-15 00:00:00',NULL,NULL),(14,'上汽','上海汽车','订单编号','YC0014','项目类型','制作内容',NULL,'交货地址','销售人员',NULL,NULL,NULL,NULL,'12000','12000',12,8,NULL,'10000',NULL,NULL,NULL,'代购设备','订单备注',NULL,NULL,NULL,'2021-01-27 00:00:00',NULL,NULL),(15,'上汽','上海汽车集团','订单名称','YC0015','汽车检具','值做内容',NULL,'交货地址','销售人员',NULL,NULL,NULL,NULL,'12000','12000',12,8,NULL,'10000',NULL,NULL,NULL,'代购设备','订单备注',NULL,NULL,NULL,'2021-01-18 00:00:00',NULL,NULL),(16,'路虎','路虎','订单名称','YC0016','汽车检具','制作内容','2021-01-21','交货地址','MRYIN',NULL,NULL,NULL,NULL,'12000','12000',12,8,NULL,'10000',NULL,NULL,NULL,'代购设备','订单备注',NULL,NULL,NULL,'2021-01-20 00:00:00',NULL,NULL),(17,'丰田','一汽丰田','IS31','YC0017','主模型检具/UCF','整车Cubing','2021-04-30','上海嘉定','销售人员',NULL,NULL,NULL,NULL,'12000','12000',12,8,NULL,'10000',NULL,NULL,NULL,'代购设备','订单备注',NULL,NULL,NULL,'2021-01-21 00:00:00',NULL,NULL),(18,'吉利','中国吉利','吉利与营创','YC0018','汽车检具','制作内容','2021-02-26','交货地址','尹家浩',NULL,NULL,NULL,NULL,'12000','12000',12,8,NULL,'10000',NULL,NULL,NULL,'代购设备','订单备注',NULL,NULL,NULL,'2021-01-22 00:00:00',NULL,NULL);
+
+UNLOCK TABLES;
+
+/*Table structure for table `permission` */
+
+DROP TABLE IF EXISTS `permission`;
+
+CREATE TABLE `permission` (
+  `id` int(11) NOT NULL auto_increment COMMENT '权限id',
+  `permName` varchar(50) character set latin1 NOT NULL COMMENT '权限名称',
+  `permTag` varchar(50) character set latin1 NOT NULL COMMENT '权限标识符',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+/*Data for the table `permission` */
+
+LOCK TABLES `permission` WRITE;
+
+insert  into `permission`(`id`,`permName`,`permTag`) values (1,'zhanshisuoyouyonghu','ROLE_LIST_USER'),(2,'shouhou','ROLE_AFTER_SALE'),(3,'dingdanguanli','ROLE_ORDER_MANAGE'),(4,'daochudaoExcel','ROLE_PRINT_EXCEL'),(5,'renwuguanli','ROLE_TASK_MANAGER');
+
+UNLOCK TABLES;
+
+/*Table structure for table `persistent_logins` */
+
+DROP TABLE IF EXISTS `persistent_logins`;
+
+CREATE TABLE `persistent_logins` (
+  `username` varchar(64) NOT NULL,
+  `series` varchar(64) NOT NULL,
+  `token` varchar(64) NOT NULL,
+  `last_used` timestamp NOT NULL default CURRENT_TIMESTAMP on update CURRENT_TIMESTAMP,
+  PRIMARY KEY  (`series`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `persistent_logins` */
+
+LOCK TABLES `persistent_logins` WRITE;
+
+insert  into `persistent_logins`(`username`,`series`,`token`,`last_used`) values ('MRYIN','pdmtfwzw+OIAUzJoG0jUJQ==','1LIhJo2mgsmoaw7kyLvyQw==','2020-12-09 16:43:30'),('MRYIN','RYxNe3GOr347ez86av3oNA==','FvknmJhxOaK/4mbWZGdNRg==','2020-12-09 16:44:27'),('MRYIN','s3YI2nl3fOxiOVIirOxlBA==','Fk6CZGvhFRH6Xc7xnJJCiQ==','2020-12-09 16:41:59'),('MRYIN','uVpV6ql5Y2oFAiw243IAsQ==','I24WMuNmxvROiqIDV9ZKng==','2020-12-09 16:41:53');
+
+UNLOCK TABLES;
+
+/*Table structure for table `problemdesc` */
+
+DROP TABLE IF EXISTS `problemdesc`;
+
+CREATE TABLE `problemdesc` (
+  `projectId` varchar(60) NOT NULL COMMENT '项目id',
+  `submitId` varchar(60) NOT NULL COMMENT '检具id',
+  `submitName` varchar(60) NOT NULL COMMENT '检具名称',
+  `problemType` varchar(60) NOT NULL COMMENT '问题类型',
+  `problemDesc` varchar(255) NOT NULL COMMENT '问题点',
+  `problemWhy` varchar(255) default NULL COMMENT '为什么发生这个问题',
+  `startTime` date NOT NULL COMMENT '什么时候发生的',
+  `projectManager` varchar(32) NOT NULL COMMENT '项目负责人',
+  `imageDesc` varchar(255) default NULL COMMENT '图片进行补充描述',
+  `problemStatus` int(11) NOT NULL default '0' COMMENT '问题状态',
+  `create_time` datetime default NULL COMMENT '创建时间',
+  `update_time` datetime default NULL COMMENT '更新时间',
+  PRIMARY KEY  (`projectId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `problemdesc` */
+
+LOCK TABLES `problemdesc` WRITE;
+
+insert  into `problemdesc`(`projectId`,`submitId`,`submitName`,`problemType`,`problemDesc`,`problemWhy`,`startTime`,`projectManager`,`imageDesc`,`problemStatus`,`create_time`,`update_time`) values ('11','1','1','1','1','1','2020-11-30','1','02bb7e00-cf52-456e-955c-1f8f3ddccd9e1588485303743.jpeg',0,NULL,'2020-12-28 18:37:55'),('12','12','12','12','12','12','2020-12-09','12','40b0e97a-272d-462a-9c91-bfb7fd71d331Tulips.jpg',0,NULL,NULL),('122','1','1','1','1','1','2020-12-08','1','7a04a30a-0664-4398-a5d8-e8e072db8b7cChrysanthemum.jpg',0,NULL,NULL),('12321321','fdasfdsf','adfsds','afdasf','fadfdasf','dasfdas','2020-12-08','adsf','Desert.jpg',0,NULL,NULL),('1234','2','2','2','2','2','2020-12-08','2','3f139791-9d4b-4739-a26c-37933a065f25539351f5-f295-4b21-9696-dfadc27250951588485303743.jpeg',0,NULL,NULL),('12345','9','9','9','9','9','2020-12-09','9','3fb94f62-1c90-453e-8321-99e9f43173c9Koala.jpg',0,NULL,NULL),('1gsadf','dsafdsa','fdasfadsf','sdafdsaf','sdfsadfasdf','sadfs','2020-12-07','saf','cacad765-1878-434c-b233-ac13749ddcd0QQ图片20201127125028.jpg',0,NULL,NULL),('1tgb','fad','dfa','adfs','daf','adf','2020-12-15','fda','539351f5-f295-4b21-9696-dfadc27250951588485303743.jpeg',0,NULL,NULL),('2','2','2','2','2','2','2020-12-17','2','5c88718d-fb61-4baf-924f-d50c4583ca98Tulips.jpg',0,NULL,NULL),('212','2','2','2','2','2','2020-12-10','2','13e45890-353c-4790-8541-c09e5c1f915dDesert.jpg',0,NULL,NULL),('213','2','2','2','2','2','2020-11-30','2','22d39f88-ff00-413c-bd6e-ab4fd01018d7Desert.jpg',0,NULL,NULL),('213213','3234','fsdafdas','dafd','sfads','fdasf','2020-12-07','adsf','Koala.jpg',0,NULL,NULL),('22','2','2','2','2','2','2020-12-02','2','90ac6052-ca25-449c-86d1-c9505d804485e0a3640a-1bac-410e-994e-01ca8fd7b4feDesert.jpg',0,NULL,NULL),('aaa','aa','a','a','a','a','2020-12-09','a','856a33b9-9066-4503-9e67-40caa0540a9271aab037-9e14-4ba6-9bc4-cb3ad159f4a8272a43e9-8a3b-46b4-baf8-54a695931154539351f5-f295-4b21-9696-dfadc27250951588485303743.jpeg',0,NULL,NULL),('aaaaaaaaaaaa','dsfdsaf','dsafdsaf','dsafdsaf','sdafdsa','fdsaf','2020-12-08','dsaf','Jellyfish.jpg',0,NULL,NULL),('aaaaxxxx','x','x','x','x','x','2020-12-08','x','7a04a30a-0664-4398-a5d8-e8e072db8b7cChrysanthemum.jpg',0,NULL,NULL),('addSolu5','fdaskf','fdaf','市场部','dasfdsa','dasfads','2020-12-16','fdsaf','6c062ba0-5793-4ca8-b0cc-c2e74a1c189479ff3e6d-ab27-409e-9df6-62562a293942539351f5-f295-4b21-9696-dfadc27250951588485303743.jpeg',0,'2020-12-28 17:54:09','2020-12-29 14:17:35'),('asdxz','x','x','x','x','x','2020-12-07','x','ccda419d-fff6-4fad-90df-10e05adabfac09e84265-4cc4-4778-820e-2b5d3317a0b30826252c-d50b-41b9-af63-a01616df1defe0a3640a-1bac-410e-994e-01ca8fd7b4feDesert.jpg',0,NULL,NULL),('azxv','bsa','ads','adsf','sad','ads','2020-12-17','aad','e1a48fe5-9e13-4316-86d8-215e294235bbKoala.jpg',0,NULL,NULL),('azxvcxv','adf','adsf','dasf','asdfsd','fds','2020-12-07','adf','477c85fd-e234-4a77-a27a-9daeb598234482eb2041-f6d6-4329-a273-353c3ee1777b0826252c-d50b-41b9-af63-a01616df1defe0a3640a-1bac-410e-994e-01ca8fd7b4feDesert.jpg',0,NULL,NULL),('cxczxcds','dsa','dsa','fdas','dsaf','dsaf','2020-12-08','adf','8cd7d057-a309-41b7-8d0b-e89860ec5b3e82eb2041-f6d6-4329-a273-353c3ee1777b0826252c-d50b-41b9-af63-a01616df1defe0a3640a-1bac-410e-994e-01ca8fd7b4feDesert.jpg',0,NULL,NULL),('cxzvczxcvcx','xzvcz','vczxv','czxv','czxvc','xzv','2020-12-18','zcxv','1393d753-c6ab-4419-90f2-ea27713e17bc8cd7d057-a309-41b7-8d0b-e89860ec5b3e82eb2041-f6d6-4329-a273-353c3ee1777b0826252c-d50b-41b9-af63-a01616df1defe0a3640a-1bac-410e-994e-01ca8fd7b4feDesert.jpg',0,NULL,NULL),('daf','daf','dsaf','dsaf','afdf','adf','2020-12-01','afd','a63baa5b-4f2c-43d6-bd9b-d034e275de805e9aff8e-486a-44b9-b7a1-4f6a895b486cPenguins.jpg',0,NULL,NULL),('dafadsf','daf','fdsfadsf','dasf','fdasfdsf','dasfadsf','2020-12-08','fdasfd','5189910d-b9d7-47b2-8a24-d55597c47d4eJellyfish.jpg',0,NULL,NULL),('dafd','dsafasd','dsafdas','fdsafdsafad','sfdsaf','dasfdsfdsa','2020-12-09','fadsfads','240d581c-5ee9-4693-a7c3-ee1d71fbf885Koala.jpg',0,NULL,NULL),('dafdas','fdasf','dsafdsa','dfsafd','safdasfds','afdsa','2020-12-08','adsfds','217fb8e5-bf68-442e-aeb2-ba7e6efabd93Penguins.jpg',0,NULL,NULL),('dafdsafads','dsafdsafd','safdsaf','dsafdsa','dasfadsfdsf','dsfdsfdsfds','2020-12-08','fdasfdasf','1ddc3c53-d2aa-4560-b9d0-be75fe7e672bKoala.jpg',0,NULL,NULL),('dafdsf','dasfdasf','dasfdasf','adsfdasfa','sdfadsf','dsfsdafadsf','2020-12-09','adsfdsf','e988bbb0-8d9c-4ee8-98b1-be6e33abdfe3Hydrangeas.jpg',0,NULL,NULL),('dasfda','sfdas','fdsafda','sf','asfasf','das','2020-12-03','da','350c2175-6e8c-4698-a980-7bb5c89370e7Penguins.jpg',0,NULL,NULL),('dasfdaf','dafdsafdsa','fdsafds','fdasfd','safdasfads','fdasfdasf','2020-12-09','dasfdas','3b960d9c-cbe5-486a-b055-2d75fe732076Desert.jpg',0,NULL,NULL),('dasfdas','fdasf','dsfdasfdsa','fdsaf','dsafsdaf','sdafdsa','2020-12-03','asdfds','b2a14813-dc81-4de7-b8cb-d8b88b84eb8dPenguins.jpg',0,NULL,NULL),('dasfds','fdsaf','dasfd','safdsaf','dsafdas','fdsafd','2020-12-09','das','507c3d12-5785-4754-89ff-65647bbd3f1bHydrangeas.jpg',0,NULL,NULL),('dasfdsa','fdasf','dsafdsaf','dsafdsaf','dsafdsf','asd','2020-12-17','dfa','d721bd0b-7782-41f2-8346-845064ac4652Penguins.jpg',0,NULL,NULL),('dasfsasaavxc','sa','ads','fas','fdas','ads','2020-12-01','dsa','52c9ce60-171e-4e36-992b-db1158b89b6a82eb2041-f6d6-4329-a273-353c3ee1777b0826252c-d50b-41b9-af63-a01616df1defe0a3640a-1bac-410e-994e-01ca8fd7b4feDesert.jpg',0,NULL,NULL),('dfafdsa','sdafasdf','dsafdsa','fdsafds','fdsaf','dasf','2020-12-15','asdf','92ec3e96-3ef4-4a59-9bc1-bba608d7b1efKoala.jpg',0,NULL,NULL),('ds11','s','1','1','1','1','2020-12-08','1','69267e20-a10d-4280-a742-cd867e4750d48cd7d057-a309-41b7-8d0b-e89860ec5b3e82eb2041-f6d6-4329-a273-353c3ee1777b0826252c-d50b-41b9-af63-a01616df1defe0a3640a-1bac-410e-994e-01ca8fd7b4feDesert.jpg',0,NULL,NULL),('dsaf','dsafdsaf','fdsaf','dsafdsa','dsafdsaf','dsafdsa','2020-12-03','asdf','cf67cb71-a7bb-4e4f-9885-b68b4c95650ePenguins.jpg',0,NULL,NULL),('dsafasasxcvcx','sfd','sdf','dsaf','fsa','dfsda','2020-12-09','fsa','b6c3f28d-6100-4eb8-b33f-c834cfcdfc63layui.png',0,NULL,NULL),('dsafd','fdsaf','dsafdsa','fdsa','fsaf','adsfdsa','2020-12-15','adsf','b0bdb2de-f0a3-453f-b5b7-4f7ccf7717edLighthouse.jpg',0,NULL,NULL),('dsafdaf','adsfdsaf','dasfdasfdsa','fdasfdsafdsa','fdsafasdfdsa','fdsafdasfds','2020-12-11','dasf','f463e20a-6040-4908-9f37-0abf6855c25eJellyfish.jpg',0,NULL,NULL),('dsafdas','fdsa','fdsaf','da','fa','fas','2020-12-09','fadsf','d25aafec-069f-4570-bc83-3f522e67125ePenguins.jpg',0,NULL,NULL),('dsafdfaf','dsafdfaf','dsafdfaf','dsafdfaf','dsafdfaf','dsafdfaf','2020-12-24','dsafdfaf','448e67c5-abcb-4f26-b18d-025ad52ce571Penguins.jpg',0,NULL,NULL),('dsafdsa','fdsaf','dasfdasfd','safdasf','adsfwe','ewfwwef','2020-12-06','ewfwe','b88aae0a-e7c8-416c-ac9b-29c645a2095cLighthouse.jpg',0,NULL,NULL),('dsafdsafsdfdsfdsafsa','dsafdsafsdfdsfdsafsa','dsafdsafsdfdsfdsafsa','dsafdsafsdfdsfdsafsa','dsafdsafsdfdsfdsafsa','dsafdsafsdfdsfdsafsa','2020-12-24','dsafdsafsdfdsfdsafsa','9b684e96-f351-45c0-b631-180c427425b3阿里云账号密码.png',0,NULL,NULL),('dsafsa','fdsafd','safdsaf','dsafdd','safdsafads','dsafdsaf','2020-12-09','dsafds','92e2ece7-e81a-4a1b-8143-5ad10100274cDesert.jpg',0,NULL,NULL),('dssd','s','s','s','s','ss','2020-12-01','s','d50f3eda-1757-4756-a73b-b3940925504371aab037-9e14-4ba6-9bc4-cb3ad159f4a8272a43e9-8a3b-46b4-baf8-54a695931154539351f5-f295-4b21-9696-dfadc27250951588485303743.jpeg',0,NULL,NULL),('dsxxxafd','dsxxxafd','dsxxxafd','dsxxxafd','dsxxxafd','dsxxxafd','2020-12-09','dsxxxafd','e48bbb23-b3f7-4e2e-919d-fd32f7f19d557a04a30a-0664-4398-a5d8-e8e072db8b7cChrysanthemum.jpg',0,NULL,NULL),('ewfewfew','wefewfew','fewf','ewfeewf','ewfwefe','wewfewef','2020-12-08','ewfewf','d532aead-6b79-4798-bedc-3f1bbab3494dKoala.jpg',0,NULL,NULL),('ewrqr','fdsa','fasdf','dasfsda','dasf','dsa','2020-12-01','dsaf','5354f4c3-8623-41a5-af3e-e4ddfcf417f395e816b3-1375-4003-838f-4f45412fba5eDesert.jpg',0,NULL,NULL),('fadfdsa','fdsaf','dsafdas','fdsafadsf','dsafdsafdsaf','dsafdsadsa','2020-12-02','dfasf','e1c744eb-276a-4628-aa0b-f599257ff601Penguins.jpg',0,NULL,NULL),('fadsf','dsfads','fdasf','fdsfds','adsfdas','fdsfasdas','2020-12-01','adsf','5310f60a-0ea1-44d7-b7e8-37c25168f466Penguins.jpg',0,NULL,NULL),('fafe12','fadf','dasfd','fasdf','sadf','fasdf','2020-12-09','dasf','cacad765-1878-434c-b233-ac13749ddcd0QQ图片20201127125028.jpg',0,NULL,NULL),('fasfd ','fadfdasf','adsfdasf','adsfasdf','adsfasdfasdf','asdfdsf','2020-12-02','adfsfds','4dda28c8-9864-4d43-b85e-274fb9bb05d9Koala.jpg',0,NULL,NULL),('fdasf','dsafdsa','sdafasd','fasdf','sdfdsafdsaf','fadsfsdf','2020-12-14','dasfds','30cbf2e9-a4a0-435a-a795-c22fc8037616Lighthouse.jpg',0,NULL,NULL),('fdasfdafssdaf','sadf','dasfdas','dasfasd','fdasf','asdf','2020-12-05','daf','b309a998-15c7-4c2e-8ba7-d80f2b4df6bcPenguins.jpg',0,NULL,NULL),('fdasfdas','fdsaf','dasfdasf','dasfdsaf','dsafdsa','fdsafds','2020-12-10','fadsfds','bd5741e7-3d1e-4c84-bbce-64c9e107516fChrysanthemum.jpg',0,NULL,NULL),('fdsafda','fdsafdsa','adffa','dasfads','fdafda','fdafd','2020-12-16','fdafd','1e51be59-3f57-44bf-a7db-052a35608d0cKoala.jpg',0,NULL,NULL),('fdsafdsa','fdasfds','dasfdasf','dasfdaf','fadsfdas','dsafdsfadsf','2020-12-02','asdfadsf','bfc6f032-dde1-4f8b-aebe-f38fbaa11ebeLighthouse.jpg',0,NULL,NULL),('fdsafdsf','fdsafdsf','fdsafdsf','fdsafdsf','fdsafdsf','fdsafdsf','2020-12-03','fdsafdsf','3393c699-b65e-4c5e-b1dd-00731c6376cf3fb94f62-1c90-453e-8321-99e9f43173c9Koala.jpg',0,NULL,NULL),('fdsafdsfdsfadfsafdsa','afdas','ads','fdsaf','fadsfdsa','fdasf','2020-12-08','fdasfasd','f843aa4a-c376-4766-a3bb-4f28e04761c1Koala.jpg',0,NULL,NULL),('fdsafwet','fdasfdas','fdsaf','dsafdasf','sadfdsa','dasfds','2020-12-17','dsafdsa','a7aa82d5-0b2a-4800-bd8c-d67f88daaa59Penguins.jpg',0,NULL,NULL),('fffffff','fffffff','fffffff','fffffff','fffffff','fffffff','2020-12-02','fffffff','eaa02539-b5de-4b0a-8feb-7f1ccd77a04f3f139791-9d4b-4739-a26c-37933a065f25539351f5-f295-4b21-9696-dfadc27250951588485303743.jpeg',0,NULL,NULL),('fsdjaklfjdsakf','fsdjaklfjdsakf','fsdjaklfjdsakf','fsdjaklfjdsakf','fsdjaklfjdsakf','fsdjaklfjdsakf','2020-12-22','fsdjaklfjdsakf','528d6b85-e35b-4b60-b93c-a4681008251d自定义的实现类.png',0,NULL,NULL),('mfsdanfjadg','mfsdanfjadg','mfsdanfjadg','mfsdanfjadg','mfsdanfjadg','mfsdanfjadg','2020-12-23','mfsdanfjadg','20304b97-0855-4d57-8efa-79b6a4fc8a01Hydrangeas.jpg',1,NULL,NULL),('mnb','adsf','adsf','fads','fdsa','fad','2020-12-02','ad','e51f3021-6151-4c4c-a567-eefcecea20c3272a43e9-8a3b-46b4-baf8-54a695931154539351f5-f295-4b21-9696-dfadc27250951588485303743.jpeg',0,NULL,NULL),('mnbv','daf','daf','daf','adfsf','daf','2020-12-23','adf','71aab037-9e14-4ba6-9bc4-cb3ad159f4a8272a43e9-8a3b-46b4-baf8-54a695931154539351f5-f295-4b21-9696-dfadc27250951588485303743.jpeg',0,NULL,NULL),('mnbvc','dasf','fads','adsf','adf','adf','2020-12-11','fa','fed8a786-1598-430d-a769-521f33e2408179ff3e6d-ab27-409e-9df6-62562a293942539351f5-f295-4b21-9696-dfadc27250951588485303743.jpeg',0,NULL,NULL),('MRGSgd','MRGSgd','MRGSgd','MRGSgd','MRGSgd','MRGSgd','2020-12-01','MRGSgd','1adc5c33-3507-4588-8936-a91de7f31198ef1b33df-64f4-4221-95aa-3df072020b115c88718d-fb61-4baf-924f-d50c4583ca98Tulips.jpg',0,NULL,NULL),('mRYIN','sdaf','dasf','das','sfa','df','2020-12-02','sdf','87f4b6c2-cf2b-494e-94f6-5cb4abf80d0e79ff3e6d-ab27-409e-9df6-62562a293942539351f5-f295-4b21-9696-dfadc27250951588485303743.jpeg',0,NULL,NULL),('msjag','msjag','msjag','msjag','msjag','msjag','2020-12-17','msjag','5b3b97a6-fc0e-429d-b197-d67a5237c4968d358dc8-ac81-40c5-a430-ade6f236267a3fb94f62-1c90-453e-8321-99e9f43173c9Koala.jpg',0,NULL,NULL),('nbvbn','a','a','a','a','a','2020-12-01','a','0b9c6710-bddc-4512-9e7f-8e4bb98d34ab8e9fe531-9c99-484e-8588-68325c25a671自定义的实现类.png',0,NULL,NULL),('nmbfd','afdas','asfd','asd','fdas','sdaf','2020-12-05','fadsf','555ca476-ea7d-4ba4-81de-46b521987e61Lighthouse.jpg',0,NULL,NULL),('qaz','a','a','a','a','a','2020-11-29','a','5be584b9-0ee6-421e-86a4-2408b2c0329622d39f88-ff00-413c-bd6e-ab4fd01018d7Desert.jpg',0,NULL,NULL),('qewrt','s','s','s','s','s','2020-12-09','s','0ed35eb7-adc9-415e-953d-b730c77e465d40b0e97a-272d-462a-9c91-bfb7fd71d331Tulips.jpg',0,NULL,NULL),('qwe','w','w','w','w','w','2020-11-30','w','8d358dc8-ac81-40c5-a430-ade6f236267a3fb94f62-1c90-453e-8321-99e9f43173c9Koala.jpg',0,NULL,NULL),('qwerqtygfhb','dfsaads','adf','safdsaf','asdf','adsfsdaf','2020-12-17','dasfds','174d02c4-b00a-4596-af44-31a6c5be570ePenguins.jpg',0,NULL,NULL),('qwerty','ds','s','s','s','s','2020-12-17','s','80e2cfce-5555-427f-a339-1e0d5bb8168b22d39f88-ff00-413c-bd6e-ab4fd01018d7Desert.jpg',0,NULL,NULL),('qwesa','x','x','x','x','x','2020-11-30','x','6aec565e-da34-4679-a08f-060d792d9e5bLighthouse.jpg',0,NULL,NULL),('qxs','sf','dsaf','dsaf','dsaf','sdf','2020-12-08','dsaf','a9604802-8dee-489e-9f15-603ec944ea80Jellyfish.jpg',0,NULL,NULL),('sadfsadvcx','dasfds','fdsaf','fsdaf','sdfdsa','fasdfasdf','2020-12-11','dsafsad','246dcca2-b6eb-4acc-a323-5d6dffb552a2QQ图片20201127125028.jpg',0,NULL,NULL),('sb','s','s','s','s','s','2020-12-01','s','bfcfd2b1-76ea-4f77-8e7f-3980eb7f6dba71aab037-9e14-4ba6-9bc4-cb3ad159f4a8272a43e9-8a3b-46b4-baf8-54a695931154539351f5-f295-4b21-9696-dfadc27250951588485303743.jpeg',1,NULL,'2020-12-28 18:56:20'),('sdafdsf','dsafdsafdsa','f','asfdasdfdsaf','dsafdsafa','adsf','2020-12-07','daf','b1fd5d01-a8be-441c-9641-c69b2150320fKoala.jpg',0,NULL,NULL),('sddddd','dasf','adsf','fda','afdf','afd','2020-12-03','adf','e2e58c8f-a278-48a0-9a35-824b0aa88ffd796a2520-4b4f-4fb6-9ebc-fc36f12e95141588485303743.jpeg',0,NULL,NULL),('sertg','s','s','s','s','s','2020-12-08','s','85b68c86-d7f0-4026-a9e5-d3cf4cd9cc8dPenguins.jpg',0,NULL,NULL),('ssssss','sssda','s','fsfds','dasf','dsf','2020-12-01','fads','bd427aae-238a-4ea8-8e48-fae3ccc91333Penguins.jpg',0,NULL,NULL),('sxcvcx','x','x','x','x','x','2020-12-03','x','f984bedb-d09a-4cd4-9f90-74a940ef35fdb6c3f28d-6100-4eb8-b33f-c834cfcdfc63layui.png',0,NULL,NULL),('x32sdfd','dasf','asd','fasd','a','a','2020-12-01','a','6c062ba0-5793-4ca8-b0cc-c2e74a1c189479ff3e6d-ab27-409e-9df6-62562a293942539351f5-f295-4b21-9696-dfadc27250951588485303743.jpeg',0,NULL,NULL),('xc','sdf','sf','s','s','s','2020-12-01','s','5625fde8-fd81-4966-a0ae-7875225af82571aab037-9e14-4ba6-9bc4-cb3ad159f4a8272a43e9-8a3b-46b4-baf8-54a695931154539351f5-f295-4b21-9696-dfadc27250951588485303743.jpeg',0,NULL,NULL),('xssaxcvz','xssaxcvz','xssaxcvz','xssaxcvz','xssaxcvz','xssaxcvz','2020-12-16','xssaxcvz','94d8c80a-c8da-4ae0-9997-5ed5d325fe358cd7d057-a309-41b7-8d0b-e89860ec5b3e82eb2041-f6d6-4329-a273-353c3ee1777b0826252c-d50b-41b9-af63-a01616df1defe0a3640a-1bac-410e-994e-01ca8fd7b4feDesert.jpg',0,NULL,NULL),('xvcx','dsf','sdf','sdaf','dsfa','asdf','2020-12-08','dsaf','8b20b0ff-8363-43ce-8a9f-4a26aa7a2ca7Lighthouse.jpg',0,NULL,NULL),('xxvcxv','dasf','adsf','asdf','sdaf','dasf','2020-12-09','dsfdsa','faacf022-227f-4983-b221-6703b884bb0895e816b3-1375-4003-838f-4f45412fba5eDesert.jpg',0,NULL,NULL),('xzxcxzxc','x','x','x','x','x','2020-12-07','x','ef1b33df-64f4-4221-95aa-3df072020b115c88718d-fb61-4baf-924f-d50c4583ca98Tulips.jpg',0,NULL,NULL),('YC0002','YC0002','YC0002','YC0002','YC0002','YC0002','2020-12-10','YC0002','dd4c4fde-04c9-47ed-b476-578413cd8afbpaypal.png',0,NULL,NULL),('YC0003','YC0003','YC0003','YC0003','YC0003','YC0003','2020-12-18','YC0003','e831a1ec-19e0-4d4f-a9f7-e04996c6e219user8-128x128.jpg',1,NULL,NULL),('YC01','YC01','YC01','YC01','YC01','YC01','2020-12-09','YC01','48956963-b2ae-429d-9cec-ec74df44a636avatar5.png',0,'2020-12-28 18:19:15',NULL),('YC02','YC02','YC02','YC02','YC02','YC02','2020-12-05','YC02','379bea41-7b57-4c87-8ab9-f9334ccb8084avatar5.png',1,'2020-12-28 18:40:14',NULL),('YC31EA-80-2000','730S-23767944(45)-J1','左/右前门内板检具','加工','卡板干涉','模具厂发的图一个图二是一个卡板（角度不同，通过3D数据可以确认，对比如右图），和模具厂胡工通过电话，明天他确认下。 拆下加工，重新标定。','2020-12-09','MRYIN','8b89dd62-9cf2-48bb-9c04-4be3f5d8a3026aec565e-da34-4679-a08f-060d792d9e5bLighthouse.jpg',0,NULL,NULL),('YC622','dasfdsaf','dsaf','dsaf','dsfdas','fdsfaasdf','2020-12-09','daf','0a6647fd-4051-41a0-b613-b38949042260Koala.jpg',0,NULL,NULL),('YCyjh','yc-yjh','左右前门内板检具','参数错误','卡板干涉','加工时出错','2020-12-06','尹家浩',NULL,0,NULL,NULL),('yjh','sdfa','a','ds','adf','adf','2020-12-10','adf','031b5e2b-2e97-4429-8a08-10357a020cdfPenguins.jpg',0,NULL,NULL),('yjhg','qwe','sdf','sdf','dsaf','dasf','2020-12-08','adsf','8e9fe531-9c99-484e-8588-68325c25a671自定义的实现类.png',0,NULL,NULL),('yjhw','fdaf','daf','ad','d','aad','2020-12-15','af','79ff3e6d-ab27-409e-9df6-62562a293942539351f5-f295-4b21-9696-dfadc27250951588485303743.jpeg',0,NULL,NULL),('zcxvvwes','dafdsa','fadsf','asdf','sfsda','fasdf','2020-12-09','fasdf','02bb7e00-cf52-456e-955c-1f8f3ddccd9e1588485303743.jpeg',0,NULL,NULL),('zqefe','dasfds','fdsaf','dsa','fdsafds','dasf','2020-12-18','dafda','91b1da2b-faa8-458f-b602-fe868cb7acc9Penguins.jpg',0,NULL,NULL),('ztyuuuu','fdasfda','fdasf','dasf','dsfas','adsf','2020-12-19','fasd','be0b3fae-3c94-4f55-b672-b0cf36b813e6Tulips.jpg',0,NULL,NULL),('zxcaads','s','s','s','s','s','2020-12-09','s','906d3684-8d1a-442e-a795-6b5a2417e07a71aab037-9e14-4ba6-9bc4-cb3ad159f4a8272a43e9-8a3b-46b4-baf8-54a695931154539351f5-f295-4b21-9696-dfadc27250951588485303743.jpeg',0,NULL,NULL),('zxccxz','sd','ds','s','s','s','2020-12-09','s','0135bd20-839d-4bce-84f3-1bf154011e448cd7d057-a309-41b7-8d0b-e89860ec5b3e82eb2041-f6d6-4329-a273-353c3ee1777b0826252c-d50b-41b9-af63-a01616df1defe0a3640a-1bac-410e-994e-01ca8fd7b4feDesert.jpg',0,NULL,NULL),('zxcvvcvbb','afsd','fdsaf','sdaf','sdaf','dsafds','2020-12-17','dasf','60385fa2-2285-4781-8495-4e74be28c2f6Penguins.jpg',0,NULL,NULL),('是SAV车vxzvcxz','是SAV车vxzvcxz','是SAV车vxzvcxz','是SAV车vxzvcxz','是SAV车vxzvcxz','是SAV车vxzvcxz','2020-11-30','是SAV车vxzvcxz','02baef2f-7401-4bc0-a821-991007bd9493结构图.png',0,NULL,NULL),('法师法','打发','饭大师傅','撒旦法','阿道夫','阿道夫','2020-12-14','打发',NULL,0,NULL,NULL),('测试','测试','测试','测试','测试','测试','2020-12-23','测试','2387a947-aa93-4e5f-b2a2-2b0401671f36avatar5.png',0,NULL,NULL),('测试1','测试1','测试1','测试1','测试1','测试1','2020-12-25','测试1','307a4110-d1d0-406d-bf22-e01249824df0photo1.png',0,NULL,NULL),('测试2','测试2','测试2','测试2','测试2','测试2','2020-12-19','测试2','f8b07045-5521-4c16-9426-81d6ae417d4cavatar04.png',0,NULL,NULL),('测试3','测试3','测试3','测试3','测试3','测试3','2020-12-17','测试3','0588701a-73d0-4475-808b-9e8f2be98a00user7-128x128.jpg',0,NULL,NULL),('测试4','测试4','测试4','测试4','测试4','测试4','2020-12-17','测试4','e606219d-8928-4c47-9a51-4f20b6c557f7user6-128x128.jpg',0,NULL,NULL),('测试5','测试5','测试5','测试5','测试5','测试5','2020-12-11','测试5','d79ea564-9a91-4115-82c6-a1c6400849d2photo2.png',0,NULL,NULL),('测试6','测试6','测试6','测试6','测试6','测试6','2020-12-11','测试6','d131d76e-fc16-4788-8cca-371c1dd223d3user5-128x128.jpg',0,NULL,NULL),('测试8','测试8','测试8','测试8','测试8','测试8','2020-12-02','测试8','2a18fd4d-caf7-478b-adf0-9c17bb13ac35photo2.png',0,NULL,NULL);
+
+UNLOCK TABLES;
+
+/*Table structure for table `problemsolu` */
+
+DROP TABLE IF EXISTS `problemsolu`;
+
+CREATE TABLE `problemsolu` (
+  `projectId` varchar(60) NOT NULL COMMENT '项目id',
+  `solvePeople` varchar(32) NOT NULL COMMENT '问题解决负责人',
+  `theSolution` varchar(60) default NULL COMMENT '任务内容',
+  `solveDept` varchar(60) NOT NULL COMMENT '问题解决的部门',
+  `soluStartTime` date NOT NULL COMMENT '问题解决开始时间',
+  `soluFinishTime` date NOT NULL COMMENT '问题解决结束时间',
+  `note` varchar(255) default NULL COMMENT '备注信息',
+  `taskStatus` int(11) NOT NULL default '0' COMMENT '任务状态',
+  `create_time` datetime default NULL COMMENT '创建时间',
+  `update_time` datetime default NULL COMMENT '更新时间',
+  PRIMARY KEY  (`projectId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `problemsolu` */
+
+LOCK TABLES `problemsolu` WRITE;
+
+insert  into `problemsolu`(`projectId`,`solvePeople`,`theSolution`,`solveDept`,`soluStartTime`,`soluFinishTime`,`note`,`taskStatus`,`create_time`,`update_time`) values ('1','33','sdf','人事部','2020-12-01','2020-12-17','sdf',0,NULL,'2020-12-28 18:30:38'),('10','尹家浩1','dsaf','IT部','2020-12-01','2020-12-11','af',0,NULL,'2020-12-28 18:32:13'),('11','MRWEN',NULL,'IT部','2020-11-30','2020-12-09',NULL,0,NULL,NULL),('12','MRWEN',NULL,'项目部','2020-11-30','2020-12-08',NULL,0,NULL,NULL),('122','MRYIN',NULL,'财务部','2020-12-07','2020-12-23',NULL,0,NULL,NULL),('123','MRWEN',NULL,'项目部','2020-12-08','2020-12-10',NULL,0,NULL,NULL),('12321321','MRJIA',NULL,'项目部','2020-12-21','2020-12-24',NULL,0,NULL,NULL),('1234','MRWEN',NULL,'设计部','2020-12-01','2020-12-02',NULL,0,NULL,NULL),('12345','MRWNE',NULL,'IT部','2020-12-06','2020-12-07',NULL,0,NULL,NULL),('12sd1af','12sd1af',NULL,'市场部','2020-12-06','2020-12-09',NULL,0,NULL,NULL),('152','ds',NULL,'s','2020-12-01','2020-12-02',NULL,0,NULL,NULL),('2','2','2','IT部','2020-12-10','2020-12-26','2',0,'2020-12-28 18:48:30',NULL),('aaaaaaaaaaaa','aaaaaaaaaaaa',NULL,'IT部','2020-12-14','2020-12-10',NULL,0,NULL,NULL),('addSolu','尹家浩','addSolu','市场部','2020-12-28','2020-12-28','note',0,NULL,NULL),('addSolu1','尹家浩','addSolu','市场部','2020-12-28','2020-12-28','note',0,NULL,NULL),('addSolu2','尹家浩','addSolu','市场部','2020-12-28','2020-12-28','note',0,'2020-12-28 00:00:00',NULL),('addSolu3','尹家浩','addSolu','市场部','2020-12-28','2020-12-28','note',0,'2020-12-28 00:00:00',NULL),('addSolu4','尹家浩','addSolu','市场部','2020-12-28','2020-12-28','note',0,'2020-12-28 00:00:00',NULL),('addSolu5','尹家浩','fdsaf','IT部','2020-12-01','2020-12-05','sdaf',0,'2020-12-28 16:46:45','2020-12-28 18:24:45'),('asdfasdfasdfsdf','asdfasdfasdfsdf',NULL,'财务部','2020-11-29','2020-12-02',NULL,0,NULL,NULL),('asdfasdfasdfsdf1','asdfasdfasdfsdf',NULL,'财务部','2020-12-06','2020-12-09',NULL,0,NULL,NULL),('daf','123456',NULL,'项目部','2020-12-14','2020-12-14',NULL,0,NULL,NULL),('dasfdas','fdasfdsa',NULL,'项目部','2020-12-09','2020-12-28',NULL,0,NULL,NULL),('dasfdsaf','dasf',NULL,'项目部','2020-12-04','2020-12-25',NULL,0,NULL,NULL),('dsaf','das',NULL,'项目部','2020-11-30','2020-12-19',NULL,0,NULL,NULL),('dsda','dsaf',NULL,'项目部','2020-11-30','2020-12-19',NULL,0,NULL,NULL),('dsfa','sdf',NULL,'项目部','2020-11-30','2020-12-02',NULL,0,NULL,NULL),('dsxxxafd','dsxxxafd',NULL,'市场部','2020-12-08','2020-12-10',NULL,0,NULL,NULL),('fads','adsf',NULL,'市场部','2020-12-14','2020-12-17',NULL,0,NULL,NULL),('fasfd','MRWEN',NULL,'市场部','2020-12-06','2020-12-08',NULL,0,NULL,NULL),('fdsafdsa','fdak','fdak','人事部','2020-12-12','2020-12-19','fdak',0,NULL,NULL),('fdsafdsfdsfadfsafdsa','addSolu','addSolu','IT部','2020-12-16','2020-12-12','addSolu',0,NULL,NULL),('fffffff','f',NULL,'市场部','2020-12-06','2020-12-01',NULL,0,NULL,NULL),('mfsdanfjadg','mfsdanfjadg',NULL,'IT部','2020-11-29','2020-12-25',NULL,1,NULL,NULL),('MRGSgd','MRGSgd',NULL,'IT部','2020-12-15','2020-12-25',NULL,0,NULL,NULL),('MRWEN','尹家浩',NULL,'市场部','2020-12-23','2020-12-23',NULL,0,NULL,NULL),('MRYJH','尹家浩',NULL,'项目部','2020-12-21','2020-12-10',NULL,0,NULL,NULL),('msjag','YC02','YC02','人事部','2020-12-01','2020-12-11','YC02',0,'2020-12-28 17:16:24',NULL),('qwsxza','vc',NULL,'财务部','2020-11-29','2020-12-09',NULL,0,NULL,NULL),('sb','s','s','人事部','2020-12-03','2020-12-11','s',1,'2020-12-28 18:55:23','2020-12-28 18:56:07'),('sdfsaa','dssaa',NULL,'IT部','2020-12-06','2020-12-01',NULL,0,NULL,NULL),('vvvggv','vvvggv',NULL,'IT部','2020-11-29','2020-12-03',NULL,0,NULL,NULL),('YC0003','MRYIN','YC0003','市场部','2020-12-02','2020-12-04','YC0003',1,NULL,NULL),('YC01','YC01','YC01','项目部','2020-12-04','2020-12-18','YC01',0,'2020-12-28 18:45:23',NULL),('YC02','MRYIN','YC02','IT部','2020-12-02','2020-12-02','YC02',1,'2020-12-28 18:40:56',NULL),('YCyjh','尹家浩',NULL,'项目部','2020-12-16','2020-12-30',NULL,0,NULL,NULL),('是SAV车vxzvcxz','YC01','YC01','人事部','2020-12-07','2020-12-25','YC01',0,'2020-12-28 17:07:09',NULL),('测试1','测试1',NULL,'人事部','2020-11-29','2020-12-17',NULL,0,NULL,NULL),('测试2','测试2',NULL,'IT部','2020-12-13','2021-01-02',NULL,0,NULL,NULL),('测试3','测试3',NULL,'人事部','2020-12-11','2020-12-12',NULL,0,NULL,NULL),('测试4','测试4',NULL,'市场部','2020-12-09','2020-12-11',NULL,0,NULL,NULL),('测试5','测试5',NULL,'财务部','2020-12-11','2021-01-02',NULL,0,NULL,NULL),('测试6','测试6',NULL,'市场部','2020-12-15','2020-12-26',NULL,0,NULL,NULL),('测试7','测试7',NULL,'市场部','2020-12-18','2020-12-26',NULL,0,NULL,NULL);
+
+UNLOCK TABLES;
+
+/*Table structure for table `project` */
+
+DROP TABLE IF EXISTS `project`;
+
+CREATE TABLE `project` (
+  `ORDER_NAME` varchar(128) default NULL COMMENT '订单-项目名称',
+  `PRJ_ID` int(11) NOT NULL auto_increment COMMENT '项目ID',
+  `PRJ_CODE` varchar(32) default NULL COMMENT '项目号',
+  `PRJ_DETAILS` varchar(512) default NULL COMMENT '项目内容-备注',
+  `PRJ_MANAGER_ID` varchar(32) default NULL COMMENT '项目经理',
+  `PRJ_PlanStartDay` date default NULL COMMENT '计划启动日期',
+  `PRJ_PlanDeliveryDay` date default NULL COMMENT '计划交付日期',
+  `PRJ_START_DATE` date default NULL COMMENT '启动日期',
+  `PRJ_ReadyGo` date default NULL COMMENT '数据接收日期',
+  `PRJ_DELIVERY_DATE` date default NULL COMMENT '交付日期',
+  `PRJ_SITUATION` varchar(32) default NULL COMMENT '项目状态',
+  `PRJ_ALL_TASKS` int(11) default NULL COMMENT '任务数量',
+  `PRJ_FINISH_TASKS` int(11) default NULL COMMENT '任务完成数量',
+  `PRJ_FINISH_RATE` double(5,1) default NULL COMMENT '项目任务完成率',
+  `PRJ_ApprovedTime` datetime default NULL COMMENT '批准时间',
+  `PRJ_DrawingCount` int(255) default NULL COMMENT '图纸总数',
+  `PRJ_DrawingCount_Released` int(11) default NULL COMMENT '已发现图纸总数',
+  `PRJ_DrawingCount_Machined` int(11) default NULL COMMENT '已加工图纸总数',
+  `PRJ_DrawingCount_Accepted` int(11) default NULL COMMENT '已接收图纸总数',
+  `PRJ_DrawingCount_BeUsed` int(11) default NULL COMMENT '已领用图纸总数',
+  `PRJ_ModelCount` int(11) default NULL COMMENT '模块数量',
+  `PRJ_ModelCount_PartAssembled` int(11) default NULL COMMENT '已组装零件的模块',
+  `PRJ_ModelCount_inspected` int(11) default NULL COMMENT '已检测数量',
+  `PRJ_ModelCount_UnitAssembled` int(11) default NULL COMMENT '已装配数量',
+  `PRJ_ModelCount_Setuped` int(11) default NULL COMMENT '已安装调试',
+  `PRJ_DesignSupervisor` varchar(32) default NULL COMMENT '设计--项目核心成员',
+  `PRJ_AssemblySupervisor` varchar(32) default NULL COMMENT '装配--项目核心成员',
+  `PRJ_QualitySupervisor` varchar(32) default NULL COMMENT '质量--项目核心成员',
+  PRIMARY KEY  (`PRJ_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8;
+
+/*Data for the table `project` */
+
+LOCK TABLES `project` WRITE;
+
+insert  into `project`(`ORDER_NAME`,`PRJ_ID`,`PRJ_CODE`,`PRJ_DETAILS`,`PRJ_MANAGER_ID`,`PRJ_PlanStartDay`,`PRJ_PlanDeliveryDay`,`PRJ_START_DATE`,`PRJ_ReadyGo`,`PRJ_DELIVERY_DATE`,`PRJ_SITUATION`,`PRJ_ALL_TASKS`,`PRJ_FINISH_TASKS`,`PRJ_FINISH_RATE`,`PRJ_ApprovedTime`,`PRJ_DrawingCount`,`PRJ_DrawingCount_Released`,`PRJ_DrawingCount_Machined`,`PRJ_DrawingCount_Accepted`,`PRJ_DrawingCount_BeUsed`,`PRJ_ModelCount`,`PRJ_ModelCount_PartAssembled`,`PRJ_ModelCount_inspected`,`PRJ_ModelCount_UnitAssembled`,`PRJ_ModelCount_Setuped`,`PRJ_DesignSupervisor`,`PRJ_AssemblySupervisor`,`PRJ_QualitySupervisor`) values ('订单名称',1,'YC0001','项目内容','Admin',NULL,NULL,'2021-01-21',NULL,'2021-01-30','进行中',11,NULL,20.0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(NULL,2,'YC0015','项目内容','admin',NULL,NULL,'2021-01-23',NULL,'2021-01-29','待启动',23,NULL,0.0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(NULL,3,'YC0002',NULL,'MRYIN',NULL,NULL,'2021-01-20',NULL,'2021-01-30','进行中',10,NULL,0.0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(NULL,4,'YC0003',NULL,'MRWEN',NULL,NULL,'2021-01-22',NULL,'2021-02-03','进行中',20,NULL,50.0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(NULL,5,'YC0005',NULL,'MRJIA',NULL,NULL,'2021-01-21',NULL,'2021-02-05','待启动',13,NULL,0.0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(NULL,6,'YC0016',NULL,'MRHAO',NULL,NULL,'2020-12-12',NULL,'2020-12-21','待启动',21,NULL,0.0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(NULL,7,'YC0017',NULL,'MRDIE',NULL,NULL,'2021-01-21',NULL,'2021-04-30','进行中',32,NULL,0.0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(NULL,8,'YC0004',NULL,'MRWEN',NULL,NULL,'2021-01-21',NULL,'2021-03-12','待启动',14,NULL,0.0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(NULL,9,'YC0018',NULL,'MRYIN',NULL,NULL,'2021-01-13',NULL,'2021-01-30','已终验',17,NULL,100.0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
+
+UNLOCK TABLES;
+
+/*Table structure for table `questionlist` */
+
+DROP TABLE IF EXISTS `questionlist`;
+
+CREATE TABLE `questionlist` (
+  `QS_ID` int(11) NOT NULL auto_increment COMMENT '问题ID',
+  `QS_PRJCode` varchar(32) default NULL COMMENT '项目号',
+  `QS_QuestionID` varchar(32) default NULL COMMENT '问题编号',
+  `QS_TaskType` varchar(32) default NULL COMMENT '任务类型',
+  `QS_TaskCode` varchar(32) default NULL COMMENT '任务号&款项号',
+  `QS_SonTaskCode` varchar(32) default NULL COMMENT '子任务号&收款任务号',
+  `QS_QuestionType` varchar(32) default NULL COMMENT '问题类型',
+  `QS_Description` varchar(512) default NULL COMMENT '问题描述（目标&预期&现状）',
+  `QS_DelayTime` int(11) default NULL COMMENT '延误日期',
+  `QS_Responer` varchar(32) default NULL COMMENT '责任人',
+  `QS_ActionType` varchar(32) default NULL COMMENT '措施类型',
+  `QS_Action` varchar(1024) default NULL COMMENT '纠正措施（方法路径）',
+  `QS_SupportDept` varchar(32) default NULL COMMENT '支持（相关）部门',
+  `QS_NewPlan` date default NULL COMMENT '最新计划（完成时间）',
+  `QS_OpenClose` int(11) default '0' COMMENT '状态（是否完成）',
+  `QS_ReasonType` varchar(32) default NULL COMMENT '原因类型',
+  `QS_Reason` varchar(1024) default NULL COMMENT '原因描述',
+  `QS_ApprovedInfo` varchar(512) default NULL COMMENT '审批意见',
+  `QS_ApprovedTime` datetime default NULL COMMENT '审批时间',
+  `QS_Approved_BY` varchar(32) default NULL COMMENT '审批人',
+  `QS_Advice` varchar(512) default NULL COMMENT '建议措施',
+  `QS_Note` varchar(512) default NULL COMMENT '备注信息',
+  `QS_AddressInfo` varchar(512) default NULL COMMENT '附件资料存储路径',
+  `QS_Advice_BY` varchar(32) default NULL COMMENT '建议人',
+  `QS_REVISION` int(11) default NULL COMMENT '乐观锁',
+  `QS_CREATED_BY` varchar(32) default NULL COMMENT '创建人',
+  `QS_CREATED_TIME` datetime default NULL COMMENT '创建时间',
+  `QS_UPDATED_BY` varchar(32) default NULL COMMENT '更新人',
+  `QS_UPDATED_TIME` datetime default NULL COMMENT '更新时间',
+  PRIMARY KEY  (`QS_ID`)
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=utf8;
+
+/*Data for the table `questionlist` */
+
+LOCK TABLES `questionlist` WRITE;
+
+insert  into `questionlist`(`QS_ID`,`QS_PRJCode`,`QS_QuestionID`,`QS_TaskType`,`QS_TaskCode`,`QS_SonTaskCode`,`QS_QuestionType`,`QS_Description`,`QS_DelayTime`,`QS_Responer`,`QS_ActionType`,`QS_Action`,`QS_SupportDept`,`QS_NewPlan`,`QS_OpenClose`,`QS_ReasonType`,`QS_Reason`,`QS_ApprovedInfo`,`QS_ApprovedTime`,`QS_Approved_BY`,`QS_Advice`,`QS_Note`,`QS_AddressInfo`,`QS_Advice_BY`,`QS_REVISION`,`QS_CREATED_BY`,`QS_CREATED_TIME`,`QS_UPDATED_BY`,`QS_UPDATED_TIME`) values (1,'YC-0004','Q-0001',NULL,'',NULL,NULL,'售后测试4',4,'MRWEN','措施测试','措施内容测试','人事部','2020-12-30',0,'原因测试','原因测试内容',NULL,NULL,NULL,NULL,'这是测试的数据','',NULL,NULL,'MRYIN','2020-12-29 10:54:14',NULL,'2020-12-30 09:17:30'),(2,'YC-0001','Q-0001',NULL,'',NULL,NULL,'售后测试2',4,'MRWEN','措施测试','措施内容测试','人事部',NULL,0,'原因测试','原因测试内容',NULL,NULL,NULL,NULL,'这是测试的数据','',NULL,NULL,'MRYIN','2020-12-29 13:06:30',NULL,'2020-12-30 09:17:39'),(3,'YC-0002','Q-0001',NULL,'',NULL,NULL,'测试',5,'MRYINI','措施','措施测试','项目部','2020-12-29',0,'测试','原因测试\r\n',NULL,NULL,NULL,NULL,'这是一个测试','',NULL,NULL,'MRYIN','2020-12-29 12:46:41',NULL,'2020-12-30 15:15:21'),(4,'YC-0005','Q-0001',NULL,'',NULL,NULL,'测试5',2,'MRYIN','措施5','措施测试5','IT部','2020-12-30',0,'测试5','测试原因5',NULL,NULL,NULL,NULL,'这是一个测试5','',NULL,NULL,'MRWEN','2020-12-29 13:49:38',NULL,NULL),(5,'YC-0003','Q-0001',NULL,'',NULL,NULL,'测试3',3,'MRYIN','措施3','措施原因3','市场部','2020-12-30',0,'测试3','测试原因3',NULL,NULL,NULL,NULL,'这是一条测试数据3','',NULL,NULL,'尹家浩','2020-12-29 14:20:21',NULL,'2020-12-30 09:17:34'),(6,'YC-0006','Q-0001',NULL,'',NULL,NULL,'测试6',6,'MRYIIN','措施','这是措施6','人事部','2020-12-12',0,'测试','这是测试6',NULL,NULL,NULL,NULL,'这是任务6的测试','',NULL,NULL,'MRYIN','2020-12-30 12:13:31',NULL,'2020-12-30 12:54:16'),(7,'YC-0007','Q-0001',NULL,'',NULL,NULL,'测试7',7,'MRYIN','措施','措施7','人事部','2020-12-30',0,'测试','测试7',NULL,NULL,NULL,NULL,'这是测试7','',NULL,NULL,'MRYIN','2020-12-30 13:30:49',NULL,'2020-12-30 13:33:03'),(8,'YC-0007','Q-0001',NULL,'',NULL,NULL,'测试7-2',7,'MRYIN','措施7','措施7-2','IT部','2020-12-15',0,'测试7','测试7-2',NULL,NULL,NULL,NULL,'这是测试7-2','',NULL,NULL,'MRYIN','2020-12-30 14:47:25',NULL,NULL),(9,'YC-0008','Q-0001',NULL,'',NULL,NULL,'测试',8,'MRYIN','措施','措施8','市场部','2020-12-18',0,'测试','测试8',NULL,NULL,NULL,NULL,'这是测试8','',NULL,NULL,'MRYIN','2020-12-31 10:08:04',NULL,NULL),(10,'YC-0008','Q-0002',NULL,'',NULL,NULL,'测试',8,'MRYIN','措施','措施8','市场部','2020-12-17',0,'测试','测试8',NULL,NULL,NULL,NULL,'这是项目8的问题2','',NULL,NULL,'admin','2020-12-31 10:22:33',NULL,'2021-01-06 11:11:40'),(11,'YC-0009','Q-0001',NULL,NULL,NULL,NULL,'这是项目9的问题',9,'MRYIN','测试','措施9','人事部','2020-12-12',1,'测试','测试9',NULL,NULL,NULL,NULL,'这是项目9的问题1','',NULL,NULL,'admin','2020-12-31 17:32:01',NULL,'2021-01-06 11:19:16'),(14,'YC-0010','Q-0001',NULL,NULL,NULL,NULL,'测试1',NULL,'admin','测试','措施1','项目部',NULL,0,'测试','原因1',NULL,NULL,NULL,NULL,'这是项目10的问题1','',NULL,NULL,'admin','2021-01-04 13:45:30',NULL,'2021-01-04 13:56:34'),(15,'YC-0010','Q-0002',NULL,NULL,NULL,NULL,'这是测试重点',NULL,'admin','','','市场部',NULL,0,'','',NULL,NULL,NULL,NULL,'','',NULL,NULL,'admin','2021-01-04 13:58:56',NULL,'2021-01-04 16:40:11'),(18,'YC-0010','Q-0003',NULL,NULL,NULL,NULL,'我是添加的问题描述1',NULL,'MRYIN','','','市场部',NULL,0,'','',NULL,NULL,NULL,NULL,'','',NULL,NULL,'admin','2021-01-04 14:27:06',NULL,'2021-01-04 16:39:20'),(19,'YC-0011','Q-0001',NULL,NULL,NULL,NULL,'测试',NULL,'MRYIN','','','财务部',NULL,0,'测试','',NULL,NULL,NULL,NULL,'','',NULL,NULL,'admin','2021-01-04 17:21:56',NULL,'2021-01-06 11:09:00'),(27,'YC31EA-80-2000','Q-0001',NULL,NULL,NULL,NULL,'卡板干涉',NULL,'MRYIN','','模具厂发的图一个图二是一个卡板（角度不同，通过3D数据可以确认，对比如右图），和模具厂胡工通过电话，明天他确认下。\r\n拆下加工，重新标定。\r\n','人事部',NULL,1,'','',NULL,NULL,NULL,NULL,'预计在12月11号完成','',NULL,NULL,'admin','2021-01-06 10:16:05',NULL,'2021-01-06 10:45:59'),(28,'YC31EA-80-2000','Q-0002',NULL,NULL,NULL,NULL,'左右件钣金非镜像件，右件J36检测孔做错',NULL,'MRWEN','','将原J36检测孔烤出，重新加工新孔检测调试。原孔用糊状代木填补。','IT部',NULL,0,'','',NULL,NULL,NULL,NULL,'预计在12月11号完成','',NULL,NULL,'admin','2021-01-06 10:17:52',NULL,'2021-01-06 11:10:21'),(29,'YC37EA-80-1000','Q-0001',NULL,NULL,NULL,NULL,'销带面基准面因时分体设计，支撑面上的螺钉沉头影响检测',NULL,'MRJIA','','销带面支撑基准重新制作，把面基准和立柱做成一体结构','财务部',NULL,0,'','',NULL,NULL,NULL,NULL,'预计在12月14号完成','',NULL,NULL,'admin','2021-01-06 10:18:43',NULL,NULL),(30,'YC37EA-80-1000','Q-0002',NULL,NULL,NULL,NULL,'检具支撑面加工粗糙',NULL,'MRHAO','','支撑面重新制作，使用磨床细砂轮加工','项目部',NULL,0,'','',NULL,NULL,NULL,NULL,'预计在12月14号之前完成','',NULL,NULL,'admin','2021-01-06 10:20:00',NULL,'2021-01-06 10:20:08');
+
+UNLOCK TABLES;
+
+/*Table structure for table `role` */
+
+DROP TABLE IF EXISTS `role`;
+
+CREATE TABLE `role` (
+  `id` int(11) NOT NULL auto_increment COMMENT '角色id',
+  `realName` varchar(50) character set latin1 NOT NULL COMMENT '角色名称',
+  `roleDesc` varchar(50) character set latin1 default NULL COMMENT '角色描述',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+/*Data for the table `role` */
+
+LOCK TABLES `role` WRITE;
+
+insert  into `role`(`id`,`realName`,`roleDesc`) values (1,'guanliyuan','?????'),(2,'xiangmubu','???'),(3,'shichangbu','???'),(4,'renshibu','????'),(5,'renwubu','????');
+
+UNLOCK TABLES;
+
+/*Table structure for table `role_permission` */
+
+DROP TABLE IF EXISTS `role_permission`;
+
+CREATE TABLE `role_permission` (
+  `role_id` int(11) NOT NULL,
+  `permission_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `role_permission` */
+
+LOCK TABLES `role_permission` WRITE;
+
+insert  into `role_permission`(`role_id`,`permission_id`) values (1,1),(2,2),(3,3),(4,4),(5,5);
+
+UNLOCK TABLES;
+
+/*Table structure for table `soluproblem` */
+
+DROP TABLE IF EXISTS `soluproblem`;
+
+CREATE TABLE `soluproblem` (
+  `id` int(11) NOT NULL auto_increment COMMENT 'id',
+  `projectId` varchar(60) NOT NULL COMMENT '项目ID',
+  `projectManager` varchar(30) NOT NULL COMMENT '项目解决负责人',
+  `problemSoluDeptName` varchar(30) NOT NULL COMMENT '项目解决的部门名称',
+  `problemSoluStartTime` date NOT NULL COMMENT '项目解决的开始时间',
+  `problemSoluStopTime` date NOT NULL COMMENT '项目解决的完成时间',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `soluproblem` */
+
+LOCK TABLES `soluproblem` WRITE;
+
+UNLOCK TABLES;
+
+/*Table structure for table `task` */
+
+DROP TABLE IF EXISTS `task`;
+
+CREATE TABLE `task` (
+  `TK_ID` int(11) NOT NULL auto_increment COMMENT '任务流水号',
+  `TK_PRJCode` varchar(32) default NULL COMMENT '项目编号',
+  `TK_PRJName` varchar(128) default NULL COMMENT '项目名称',
+  `TK_QuestionID` varchar(32) default NULL COMMENT '问题号',
+  `TK_TaskType` varchar(32) default NULL COMMENT '任务类型',
+  `TK_CODE` varchar(32) default NULL COMMENT '任务号',
+  `TK_SONCODE` varchar(32) default NULL COMMENT '子任务号',
+  `TK_NAME` varchar(128) default NULL COMMENT '任务名',
+  `TK_Department` varchar(32) default NULL COMMENT '任务部门',
+  `TK_START_DATE` date default NULL COMMENT '计划开始日期',
+  `TK_END_DATE` date default NULL COMMENT '计划完成日期',
+  `TK_PreTask` varchar(128) default NULL COMMENT '前置任务',
+  `TK_ReckonSDay1` date default NULL COMMENT '应该开始日期1',
+  `TK_ReckonFDay1` date default NULL COMMENT '应该完成日期1',
+  `TK_ReckonSDay2` date default NULL COMMENT '应该开始日期2',
+  `TK_ReckonFDay2` date default NULL COMMENT '应该完成日期2',
+  `TK_RESPONER` varchar(32) default NULL COMMENT '责任人',
+  `TK_ACTUAL_STARTDAY` date default NULL COMMENT '实际开始日期',
+  `TK_ACTUAL_ENDDAY` date default NULL COMMENT '实际完成日期',
+  `TK_ALL_SUNTK` int(11) default NULL COMMENT '子任务数量',
+  `TK_FINISH_SUNTK` int(11) default NULL COMMENT '子任务完成数量',
+  `TK_PROGRESS` varchar(32) default NULL COMMENT '执行进度',
+  `TK_STATUS` int(11) default '0' COMMENT '任务状态',
+  `TK_DETAILS` varchar(1024) NOT NULL COMMENT '任务内容',
+  `TK_REVISION` int(11) default NULL COMMENT '乐观锁',
+  `TK_CREATED_BY` varchar(32) default NULL COMMENT '创建人',
+  `TK_CREATED_TIME` datetime default NULL COMMENT '创建时间',
+  `TK_UPDATED_BY` varchar(32) default NULL COMMENT '创建人',
+  `TK_UPDATED_TIME` datetime default NULL COMMENT '创建时间',
+  PRIMARY KEY  (`TK_ID`),
+  KEY `TK_REVISION` (`TK_REVISION`)
+) ENGINE=InnoDB AUTO_INCREMENT=56 DEFAULT CHARSET=utf8;
+
+/*Data for the table `task` */
+
+LOCK TABLES `task` WRITE;
+
+insert  into `task`(`TK_ID`,`TK_PRJCode`,`TK_PRJName`,`TK_QuestionID`,`TK_TaskType`,`TK_CODE`,`TK_SONCODE`,`TK_NAME`,`TK_Department`,`TK_START_DATE`,`TK_END_DATE`,`TK_PreTask`,`TK_ReckonSDay1`,`TK_ReckonFDay1`,`TK_ReckonSDay2`,`TK_ReckonFDay2`,`TK_RESPONER`,`TK_ACTUAL_STARTDAY`,`TK_ACTUAL_ENDDAY`,`TK_ALL_SUNTK`,`TK_FINISH_SUNTK`,`TK_PROGRESS`,`TK_STATUS`,`TK_DETAILS`,`TK_REVISION`,`TK_CREATED_BY`,`TK_CREATED_TIME`,`TK_UPDATED_BY`,`TK_UPDATED_TIME`) values (1,'YC-0001',NULL,'Q-0001',NULL,'T0001',NULL,'任务1','人事部','2020-12-29','2020-12-29',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,'',1,'测试任务的具体内容',NULL,'MRYIN','2020-12-29 16:01:59',NULL,'2020-12-29 18:06:25'),(2,'YC-0001',NULL,'Q-0001',NULL,'T0002',NULL,'任务2','IT部','2020-01-15','2020-01-30',NULL,NULL,NULL,NULL,NULL,'MRYIN','2020-01-16',NULL,NULL,NULL,NULL,0,'这是测试的内容',NULL,'MRYIN','2020-12-29 17:23:56',NULL,'2020-12-29 18:18:55'),(3,'YC-0001',NULL,'Q-0001',NULL,'T0003',NULL,'任务3','市场部','2020-12-14','2020-12-26',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'这是测试3',NULL,'MRYIN','2020-12-29 17:26:37',NULL,'2020-12-29 17:58:34'),(4,'YC-0003',NULL,'Q-0001',NULL,'T0001',NULL,'任务1','市场部','2020-12-25','2020-12-30',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'这是测试内容',NULL,'MRWEN','2020-12-30 08:30:05',NULL,'2020-12-30 09:23:20'),(5,'YC-0005',NULL,'Q-0001',NULL,'T0001',NULL,'项目5的任务1','财务部','2020-12-17','2020-12-26',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'这是项目的任务1',NULL,'MRYIN','2020-12-30 12:10:32',NULL,NULL),(6,'YC-0006',NULL,'Q-0001',NULL,'T0001',NULL,'项目6的测试1','市场部','2020-12-30','2020-12-31',NULL,NULL,NULL,NULL,NULL,'MRWEN',NULL,NULL,NULL,NULL,NULL,0,'这是项目6的测试1',NULL,'MRYIN','2020-12-30 12:14:23',NULL,NULL),(7,'YC-0007',NULL,'Q-0001',NULL,'T0001',NULL,'项目7的任务1','项目部','2020-12-24','2020-12-30',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'这是测试7',NULL,'MRYIN','2020-12-30 13:32:14',NULL,'2020-12-30 13:32:41'),(8,'YC-0007',NULL,'Q-0001',NULL,'T0002',NULL,'项目7的任务2','财务部','2020-12-28','2020-12-31',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'这是项目7的任务2',NULL,'MRYIN','2020-12-30 14:49:20',NULL,NULL),(9,'YC-0002',NULL,'Q-0001',NULL,'T0001',NULL,'项目2的任务1','市场部','2020-12-29','2020-12-30',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'这是项目2的任务1',NULL,'MRYIN','2020-12-30 15:12:55',NULL,NULL),(10,'YC-0008',NULL,'Q-0001',NULL,'T-0001',NULL,'任务1','人事部','2020-12-15','2020-12-31',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'项目8的问题1的任务1',NULL,'MRYIN','2020-12-31 10:09:39',NULL,NULL),(11,'YC-0008',NULL,'Q-0001',NULL,'T-0002',NULL,'任务2','项目部','2020-12-31','2021-01-01',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'这是项目8的任务2',NULL,'MRYIN','2020-12-31 10:26:42',NULL,NULL),(12,'YC-0008',NULL,'Q-0001',NULL,'T-0003',NULL,'任务3','市场部','2020-12-29','2021-01-01',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'这是项目8的问题1的任务3',NULL,'MRYIN','2020-12-31 12:17:17',NULL,NULL),(13,'YC-0008',NULL,'Q-0001',NULL,'T-0004',NULL,'任务4','项目部','2020-12-31','2021-01-01',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'项目8的问题1的任务4',NULL,'MRYIN','2020-12-31 12:41:49',NULL,NULL),(14,'YC-0009',NULL,'Q-0001',NULL,'T-0001',NULL,'任务1','IT部','2020-12-31','2021-01-01',NULL,NULL,NULL,NULL,NULL,'MRWEN',NULL,NULL,NULL,NULL,NULL,0,'这是项目9的问题1的任务1',NULL,'MRWEN','2020-12-31 17:32:55',NULL,'2020-12-31 17:46:11'),(15,'YC-0010',NULL,'Q-0001',NULL,'T-0001',NULL,'任务1','项目部','2021-01-06','2021-01-15',NULL,NULL,NULL,NULL,NULL,'Admin',NULL,NULL,NULL,NULL,NULL,0,'这是项目10的问题1的任务1',NULL,'admin','2021-01-04 15:16:19',NULL,'2021-01-04 16:39:37'),(16,'YC-0010',NULL,'Q-0001',NULL,'T-0002',NULL,'任务2','人事部','2021-01-04','2021-01-08',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'这是项目10的问题1的任务2',NULL,'admin','2021-01-04 16:36:01',NULL,NULL),(17,'YC-0011',NULL,'Q-0001',NULL,'T-0001',NULL,'任务1','人事部','2021-01-03','2021-01-06',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'测试',NULL,'admin','2021-01-04 17:26:22',NULL,'2021-01-05 10:49:34'),(18,'YC-0011',NULL,'Q-0001',NULL,'T-0002',NULL,'任务2','项目部','2021-01-04','2021-01-06',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'测试2',NULL,'admin','2021-01-04 17:40:58',NULL,'2021-01-05 10:51:21'),(19,'YC-0011',NULL,'Q-0001',NULL,'T-0003',NULL,'任务3','人事部','2021-01-15','2021-01-19',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'这是任务3',NULL,'admin','2021-01-05 09:03:13',NULL,'2021-01-05 14:33:15'),(20,'YC-0011',NULL,'Q-0001',NULL,'T-0004',NULL,'任务4','IT部','2021-01-13','2021-01-14',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'这是任务4',NULL,'admin','2021-01-05 10:56:49',NULL,NULL),(21,'YC-0011',NULL,'Q-0001',NULL,'T-0005',NULL,'任务5','人事部','2021-01-15','2021-01-16',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'这是任务5',NULL,'admin','2021-01-05 10:57:28',NULL,NULL),(22,'YC-0009',NULL,'Q-0001',NULL,'T-0002',NULL,'任务2','项目部','2021-01-13','2021-01-14',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'任务2',NULL,'admin','2021-01-05 10:59:15',NULL,NULL),(23,'YC-0011',NULL,'Q-0001',NULL,'T-0006',NULL,'任务6','人事部','2021-01-22','2021-01-23',NULL,NULL,NULL,NULL,NULL,'mrYIN',NULL,NULL,NULL,NULL,NULL,0,'任务6',NULL,'admin','2021-01-05 11:02:04',NULL,NULL),(24,'YC-0011',NULL,'Q-0001',NULL,'T-0007',NULL,'任务7','人事部','2021-01-06','2021-01-21',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'任务7',NULL,'admin','2021-01-05 11:03:41',NULL,NULL),(25,'YC-0009',NULL,'Q-0001',NULL,'T-0003',NULL,'任务3','市场部','2021-01-05','2021-01-22',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'任务3',NULL,'admin','2021-01-05 11:05:42',NULL,NULL),(26,'YC-0009',NULL,'Q-0001',NULL,'T-0004',NULL,'任务4','人事部','2021-01-05','2021-01-14',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'任务4',NULL,'admin','2021-01-05 11:08:48',NULL,NULL),(27,'YC-0009',NULL,'Q-0001',NULL,'T-0005',NULL,'任务5','项目部','2021-01-13','2021-01-15',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'任务5',NULL,'admin','2021-01-05 11:11:20',NULL,NULL),(28,'YC-0009',NULL,'Q-0001',NULL,'T-0006',NULL,'任务6','财务部','2021-01-07','2021-01-15',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'任务6',NULL,'admin','2021-01-05 11:13:34',NULL,NULL),(29,'YC-0008',NULL,'Q-0002',NULL,'T-0001',NULL,'任务1','市场部','2021-01-06','2021-01-07',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'任务1',NULL,'admin','2021-01-05 11:17:04',NULL,NULL),(30,'YC-0008',NULL,'Q-0002',NULL,'T-0002',NULL,'任务2','IT部','2021-01-13','2021-01-15',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'任务2',NULL,'admin','2021-01-05 11:19:27',NULL,NULL),(31,'YC-0008',NULL,'Q-0002',NULL,'T-0003',NULL,'任务3','市场部','2021-01-06','2021-01-22',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'任务3',NULL,'admin','2021-01-05 11:23:58',NULL,NULL),(33,'YC-0010',NULL,'Q-0002',NULL,'T-0002',NULL,'任务2','人事部','2021-01-03','2021-01-13',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'任务2',NULL,'admin','2021-01-05 11:27:04',NULL,NULL),(34,'YC-0010',NULL,'Q-0002',NULL,'T-0003',NULL,'任务3','IT部','2021-01-04','2021-01-05',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'这是任务3',NULL,'admin','2021-01-05 11:28:54',NULL,NULL),(35,'YC-0010',NULL,'Q-0002',NULL,'T-0004',NULL,'任务4','市场部','2021-01-14','2021-01-24',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'任务4',NULL,'admin','2021-01-05 11:32:18',NULL,NULL),(37,'YC-0010',NULL,'Q-0002',NULL,'T-0001',NULL,NULL,'项目部','2021-01-05','2021-01-07',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'任务1',NULL,'admin','2021-01-05 11:42:31',NULL,NULL),(38,'YC-0010',NULL,'Q-0003',NULL,'T-0001',NULL,NULL,'项目部','2021-01-05','2021-01-06',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'任务1',NULL,'admin','2021-01-05 11:43:40',NULL,NULL),(39,'YC-0010',NULL,'Q-0003',NULL,'T-0002',NULL,NULL,'人事部','2021-01-05','2021-01-06',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'任务2',NULL,'admin','2021-01-05 11:44:11',NULL,NULL),(40,'YC-0011',NULL,'Q-0001',NULL,'T-0008',NULL,NULL,'人事部','2021-01-13','2021-01-29',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'任务8',NULL,'admin','2021-01-05 14:23:14',NULL,NULL),(41,'YC31EA-80-2000',NULL,'Q-0001',NULL,'T-0001',NULL,NULL,'市场部','2021-01-07','2021-01-08',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,1,'拆下加工',NULL,'admin','2021-01-06 10:44:29',NULL,'2021-01-06 10:45:39'),(42,'YC31EA-80-2000',NULL,'Q-0001',NULL,'T-0002',NULL,NULL,'市场部','2021-01-08','2021-01-14',NULL,NULL,NULL,NULL,NULL,'MRWEN',NULL,NULL,NULL,NULL,NULL,1,'重新标定',NULL,'admin','2021-01-06 10:45:02',NULL,'2021-01-06 10:45:42'),(43,'YC-0012',NULL,'Q-0001',NULL,'T-0001',NULL,NULL,'市场部','2021-01-15','2021-01-17',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,1,'这是内容',NULL,'admin','2021-01-12 08:36:00',NULL,'2021-01-12 08:38:27'),(44,'YC-0012',NULL,'Q-0001',NULL,'T-0002',NULL,NULL,'IT部','2021-01-14','2021-01-16',NULL,NULL,NULL,NULL,NULL,'MRYIN',NULL,NULL,NULL,NULL,NULL,0,'这是项目12的问题1的任务2',NULL,'MRYIN','2021-01-14 14:26:59',NULL,NULL),(45,'YC-0017','IS31',NULL,'PMT','0200S01',NULL,'客户冻结数据输入',NULL,'2021-01-22','2021-01-22',NULL,NULL,NULL,NULL,NULL,'广汽','2021-01-22','2021-01-22',NULL,NULL,'0',0,'备注信息',NULL,NULL,NULL,NULL,NULL),(46,'YC0001','订单名称',NULL,'PCT','12S232',NULL,'客户冻结数据输入',NULL,'2020-01-15','2020-01-30',NULL,NULL,NULL,NULL,NULL,'MRYIN','2020-01-16',NULL,NULL,NULL,'0',0,'备注信息',NULL,NULL,NULL,NULL,NULL),(47,'YC0002','订单名称',NULL,'PMT','12S232',NULL,'客户冻结数据输入',NULL,'2020-01-15','2020-01-30',NULL,NULL,NULL,NULL,NULL,'MRYIN','2020-01-16',NULL,NULL,NULL,'0',0,'备注信息',NULL,NULL,NULL,NULL,NULL),(48,'YC0001','订单名称',NULL,'PCT','001S001',NULL,'数据冻结',NULL,'2021-01-22','2021-01-22',NULL,NULL,NULL,NULL,NULL,'ss','2021-01-22','2021-01-22',NULL,NULL,'0',0,'备注信息',NULL,NULL,NULL,NULL,NULL),(49,'YC0001','订单名称',NULL,'PCT','001S001',NULL,'数据冻结',NULL,'2021-01-22','2021-01-22',NULL,NULL,NULL,NULL,NULL,'ss','2021-01-22','2021-01-22',NULL,NULL,'s',1,'备注信息',NULL,NULL,NULL,NULL,NULL),(50,'YC0001','订单名称',NULL,'PCT','001S001',NULL,'数据冻结',NULL,'2021-01-22','2021-01-22',NULL,NULL,NULL,NULL,NULL,'ss','2021-01-22','2021-01-22',NULL,NULL,'s',0,'备注信息',NULL,NULL,NULL,NULL,NULL),(51,'YC0001','订单名称',NULL,'PCT','001S001',NULL,'任务名称',NULL,'2021-01-22','2021-01-22',NULL,NULL,NULL,NULL,NULL,'MRYIN','2021-01-22','2021-01-22',NULL,NULL,'0',0,'备注信息',NULL,NULL,NULL,NULL,NULL),(52,'YC0017','IS31',NULL,'PCT','001S017',NULL,'数据冻结',NULL,'2021-01-22','2021-01-22',NULL,NULL,NULL,NULL,NULL,'ss','2021-01-22','2021-01-22',NULL,NULL,'0',0,'这是项目17的任务',NULL,NULL,NULL,NULL,NULL),(53,'YC0018','吉利与营创',NULL,'PCT','18S1',NULL,'生产汽车检具',NULL,'2021-01-22','2021-01-22',NULL,NULL,NULL,NULL,NULL,'小明','2021-01-22','2021-01-22',NULL,NULL,'0',1,'测试任务的备注信息',NULL,NULL,NULL,NULL,NULL),(54,'YC0003','订单名称',NULL,'AST','001CS001',NULL,'测试项目进度',NULL,'2021-01-05','2021-01-30',NULL,NULL,NULL,NULL,NULL,'刘诗兵','2021-01-28','2021-01-24',NULL,NULL,'0',1,'测试数据',NULL,NULL,NULL,NULL,NULL),(55,'YC0003','订单名称',NULL,'PCT','002CS001',NULL,'测试项目进度',NULL,'2021-01-07','2021-01-11',NULL,NULL,NULL,NULL,NULL,'刘小倩','2021-01-05','2021-01-24',NULL,NULL,'0',0,'测试用的数据',NULL,NULL,NULL,NULL,NULL);
+
+UNLOCK TABLES;
+
+/*Table structure for table `user` */
+
+DROP TABLE IF EXISTS `user`;
+
+CREATE TABLE `user` (
+  `id` int(11) NOT NULL auto_increment COMMENT '用户id',
+  `username` varchar(50) character set latin1 NOT NULL COMMENT '用户名',
+  `realname` varchar(50) character set latin1 NOT NULL COMMENT '真实姓名',
+  `password` varchar(128) character set latin1 NOT NULL COMMENT '密码',
+  `createDate` date NOT NULL COMMENT '创建日期',
+  `lastData` date NOT NULL COMMENT '最后登录日期',
+  `enabled` int(11) NOT NULL COMMENT '是否可用',
+  `accountNonExpired` int(11) NOT NULL COMMENT '是否过期',
+  `accountNonLocked` int(11) NOT NULL COMMENT '是否锁定',
+  `credentialsNonExpired` int(11) NOT NULL COMMENT '证书是否过期',
+  PRIMARY KEY  (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+/*Data for the table `user` */
+
+LOCK TABLES `user` WRITE;
+
+insert  into `user`(`id`,`username`,`realname`,`password`,`createDate`,`lastData`,`enabled`,`accountNonExpired`,`accountNonLocked`,`credentialsNonExpired`) values (1,'MRYIN','yinjiahao','$2a$10$MmNjc5WEz5JWqrOm1Q9N9Oz2QMMWh1Qhhb7Ng5WBJ0LtH1RW59nxC','2020-12-08','2020-12-08',1,1,1,1),(2,'MRWEN','yinjiahao','$2a$10$A8Mo/tqD8RJkK.5iAu1J1OUrLxWNvtIpJ2cRJgBw32BtdphmPZIhG','2020-12-22','2020-12-25',1,1,1,1),(3,'MRJIA','yinjiahao','$2a$10$A8Mo/tqD8RJkK.5iAu1J1OUrLxWNvtIpJ2cRJgBw32BtdphmPZIhG','2020-12-15','2020-12-22',1,1,1,1),(4,'admin','yjh','$2a$10$A8Mo/tqD8RJkK.5iAu1J1OUrLxWNvtIpJ2cRJgBw32BtdphmPZIhG','2020-12-28','2020-12-28',1,1,1,1),(5,'test','??','$2a$10$A8Mo/tqD8RJkK.5iAu1J1OUrLxWNvtIpJ2cRJgBw32BtdphmPZIhG','2021-01-13','2021-01-13',1,1,1,1);
+
+UNLOCK TABLES;
+
+/*Table structure for table `user_role` */
+
+DROP TABLE IF EXISTS `user_role`;
+
+CREATE TABLE `user_role` (
+  `user_id` int(11) NOT NULL,
+  `role_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+/*Data for the table `user_role` */
+
+LOCK TABLES `user_role` WRITE;
+
+insert  into `user_role`(`user_id`,`role_id`) values (1,1),(1,2),(1,3),(1,4),(2,1),(3,3),(4,2),(5,2),(1,5);
+
+UNLOCK TABLES;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.MRYIN.mapper.UserMapper">
+   <select id="findByUsername" parameterType="java.lang.String" resultType="com.MRYIN.pojo.User">
+       select * from user where username = #{username}
+   </select>
+
+    <select id="findPermissionByUsername" parameterType="java.lang.String" resultType="com.MRYIN.pojo.Permission">
+        SELECT permission.* FROM USER
+        INNER JOIN user_role ON user.`id` = user_role.`user_id`
+        INNER JOIN role_permission ON user_role.`role_id` = role_permission.`role_id`
+        INNER JOIN permission ON role_permission.`permission_id` = permission.`id`
+        WHERE user.`username` = #{username}
+    </select>
+
+    <select id="loginByUsernameAndPassword" parameterType="java.lang.String" resultType="com.MRYIN.pojo.User">
+        select * from user where username = #{username} and password = #{password}
+    </select>
+
+    <select id="queryAllUser" resultType="com.MRYIN.pojo.User">
+      select * from user order by id
+   </select>
+
+    <select id="getLayuiTable" resultType="com.MRYIN.pojo.User">
+      select * from user order by id
+   </select>
+
+    <insert id="addUser" parameterType="com.MRYIN.pojo.User">
+        insert into user(username,realname,password,createDate,lastDate,enabled,accountNonExpired,accountNonLocked,credentialsNonExpired) values (#{username},#{realname},#{password},#{createDate},#{lastDate},#{enabled},#{accountNonExpired},#{accountNonLocked},#{credentialsNonExpired})
+    </insert>
+
+    <delete id="deleteUser" parameterType="java.lang.String">
+       delete from user where username = #{username}
+    </delete>
+
+    <update id="updateUser" parameterType="com.MRYIN.pojo.User">
+        update user set username = #{username} ,
+        realname = #{realname},
+        password = #{password},
+        createDate = #{createDate}
+        lastDate = #{lastDate},
+        enabled = #{enabled}
+        accountNonExpired = #{accountNonExpired}
+        accountNonLocked = #{accountNonLocked}
+        credentialsNonExpired = #{credentialsNonExpired}
+        where id = #{id}
+    </update>
+
+    <select id="queryAllUserByUsername" parameterType="java.lang.String" resultType="com.MRYIN.pojo.User">
+        select * from user where username = #{username}
+    </select>
+
+    <update id="updatePassword" parameterType="com.MRYIN.pojo.User">
+        update user set password = #{password} where username = #{username};
+    </update>
+
+
+
+
+</mapper>

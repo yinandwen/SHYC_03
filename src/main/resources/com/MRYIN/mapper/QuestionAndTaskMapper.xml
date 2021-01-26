@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.MRYIN.mapper.QuestionAndTaskMapper">
+    <select id="AllQuestionAndTask" resultType="com.MRYIN.pojo.QuestionAndTask" parameterType="java.lang.String">
+        SELECT * FROM
+            questionlist
+        INNER JOIN
+            task
+        ON
+            questionlist.QS_PRJCode = task.TK_PRJCode
+        AND
+            questionlist.QS_QuestionID = task.TK_QuestionID
+        AND
+            questionlist.`QS_PRJCode` = #{QS_PRJCode}
+        AND
+            questionlist.`QS_QuestionID` = #{QS_QuestionID}
+    </select>
+</mapper>

@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:security="http://www.springframework.org/schema/security"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:securitu="http://www.springframework.org/schema/security"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/security
+    http://www.springframework.org/schema/security/spring-security.xsd">
+
+    <security:http>
+        <security:session-management>
+            <security:concurrency-control max-sessions="1" expired-url="/Login/toLogin"/>
+        </security:session-management>
+        <!--<security:form-login />-->
+
+        <!--攔截所有资源-->
+
+        <!-- <security:intercept-url pattern="/product/list" access="hasAnyAuthority('Role_LIST_USER')"/>
+         <security:intercept-url pattern="/product/add" access="hasAnyAuthority('ROLE_PRINT_EXCEL')"/>
+         <security:intercept-url pattern="/product/delete" access="hasAnyAuthority('ROLE_AFTER_SALE')"/>
+         <security:intercept-url pattern="/product/update" access="hasAnyAuthority('ROLE_ORDER_MANAGE')"/>-->
+
+        <!--释放所有静态资源和首页-->
+        <security:headers disabled="true"/>
+        <security:intercept-url pattern="/js/**" access="permitAll()"/>
+        <security:intercept-url pattern="/css/**" access="permitAll()"/>
+        <security:intercept-url pattern="/fonts/**" access="permitAll()"/>
+        <security:intercept-url pattern="/images/**" access="permitAll()"/>
+        <security:intercept-url pattern="/lib/**" access="permitAll()"/>
+        <security:intercept-url pattern="/index.jsp" access="permitAll()"/>
+
+
+        <!--<securitu:intercept-url pattern="/User/userInfo" access="hasRole('ROLE_LIST_USER')"/>
+        <securitu:intercept-url pattern="/Desc/problemDescInfo" access="hasRole('ROLE_AFTER_SALE')"/>-->
+
+        <securitu:intercept-url pattern="/User/userInfo" access="hasAuthority('ROLE_LIST_USER')"/>
+        <securitu:intercept-url pattern="/Desc/problemDescInfo" access="hasAuthority('ROLE_AFTER_SALE')"/>
+        <securitu:intercept-url pattern="/Solu/problemSoluInfo" access="hasAuthority('ROLE_AFTER_SALE')"/>
+        <securitu:intercept-url pattern="/problemDesc/toUpdateStatus" access="hasAuthority('ROLE_AFTER_SALE')"/>
+        <securitu:intercept-url pattern="/problemDesc/addProblemDescription" access="hasAuthority('ROLE_AFTER_SALE')"/>
+
+
+        <security:intercept-url pattern="/Login/toLogin" access="permitAll()"/>
+        <security:intercept-url pattern="/Login/toIndex" access="permitAll()"/>
+        <security:intercept-url pattern="/Login/login" access="permitAll()"/>
+        <security:intercept-url pattern="/Login/toWelcomeAdmin" access="permitAll()"/>
+
+
+        <security:intercept-url pattern="/**" access="isFullyAuthenticated()"/>
+
+
+        <!--用自定义的方式来
+
+             login-page="/Login/toLogin"
+             login-page="/Login/toLogin" login-processing-url="/Login/login"
+
+             login-page="/Login/toLogin" login-processing-url="/Login/login"
+                             authentication-success-forward-url="/Login/toIndex"
+
+        -->
+
+        <security:form-login
+                            login-page="/Login/toLogin"
+                            login-processing-url="/Login/login"
+                             authentication-failure-handler-ref="AuthenticationFailureHandler"
+                             authentication-success-handler-ref="MyAuthenticationSuccessHandler"/> <!--authentication-failure-url="/product/toLogin?error=true" -->
+
+        <!--权限不足获取错误处理-->
+        <security:access-denied-handler error-page="/Login/toError"/>
+
+        <security:csrf disabled="true"/>
+
+
+
+    </security:http>
+
+    <security:authentication-manager>
+        <!--<security:authentication-provider>
+            <security:user-service>
+                <security:user name="mryin"  password="123456" authorities="Role_LIST_USER"/>
+            </security:user-service>
+        </security:authentication-provider>-->
+
+
+        <security:authentication-provider user-service-ref="MyUserDetailService">
+            <!--使用加密算法，对输入的密码进行加密，然后和数据库中的进行配对-->
+            <security:password-encoder ref="passwordEncoder"/>
+        </security:authentication-provider>
+
+
+
+
+    </security:authentication-manager>
+
+    <bean id="MyUserDetailService" class="com.MRYIN.security.MyUserDetailService"/>
+    <bean id="MyAuthenticationSuccessHandler" class="com.MRYIN.security.MyAuthenticationSuccessHandler"/>
+    <bean id="AuthenticationFailureHandler" class="com.MRYIN.security.MyAuthenticationFailureHandler"/>
+
+    <bean id="passwordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+
+
+</beans>

@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.MRYIN.mapper.QuestionlistMapper">
+
+    <insert id="addQuestion" parameterType="com.MRYIN.pojo.Questionlist">
+        insert into questionlist
+            (QS_PRJCode,
+                QS_QuestionID,
+                QS_Description,
+                QS_Responer,
+                QS_SupportDept,
+                QS_ReasonType,
+                QS_Reason,
+                QS_ActionType,
+                QS_Action,
+                QS_AddressInfo,
+                QS_Note,
+                QS_CREATED_TIME,
+                QS_CREATED_BY)
+        values
+            (#{QS_PRJCode},
+                #{QS_QuestionID},
+                #{QS_Description},
+                #{QS_Responer},
+                #{QS_SupportDept},
+                #{QS_ReasonType},
+                #{QS_Reason},
+                #{QS_ActionType},
+                #{QS_Action},
+                #{QS_AddressInfo},
+                #{QS_Note},
+                #{QS_CREATED_TIME},
+                #{QS_CREATED_BY})
+    </insert>
+
+    <delete id="deleteQuestion" parameterType="java.lang.Integer">
+        delete from questionlist where QS_ID = #{QS_ID}
+    </delete>
+
+
+    <update id="updateQusetion" parameterType="com.MRYIN.pojo.Questionlist">
+        update questionlist set
+                QS_PRJCode = #{QS_PRJCode},
+                QS_QuestionID = #{QS_QuestionID},
+                QS_Description = #{QS_Description},
+                QS_Responer = #{QS_Responer},
+                QS_SupportDept = #{QS_SupportDept},
+                QS_ReasonType = #{QS_ReasonType},
+                QS_Reason = #{QS_Reason},
+                QS_ActionType = #{QS_ActionType},
+                QS_Action = #{QS_Action},
+                QS_AddressInfo = #{QS_AddressInfo},
+                QS_Note = #{QS_Note},
+                QS_UPDATED_TIME = #{QS_UPDATED_TIME},
+                QS_CREATED_BY = #{QS_CREATED_BY}
+        where
+            QS_ID = #{QS_ID}
+    </update>
+
+    <update id="updateStatus" parameterType="com.MRYIN.pojo.Questionlist">
+        update questionlist set
+                QS_PRJCode = #{QS_PRJCode},
+                QS_QuestionID = #{QS_QuestionID},
+                QS_Description = #{QS_Description},
+                QS_Responer = #{QS_Responer},
+                QS_SupportDept = #{QS_SupportDept},
+                QS_OpenClose = #{QS_OpenClose},
+                QS_ReasonType = #{QS_ReasonType},
+                QS_Reason = #{QS_Reason},
+                QS_ActionType = #{QS_ActionType},
+                QS_Action = #{QS_Action},
+                QS_AddressInfo = #{QS_AddressInfo},
+                QS_Note = #{QS_Note},
+                QS_UPDATED_TIME = #{QS_UPDATED_TIME},
+                QS_CREATED_BY = #{QS_CREATED_BY}
+        where
+            QS_ID = #{QS_ID}
+    </update>
+
+    <!--    <update id="updateQS_TaskCode" parameterType="com.MRYIN.pojo.Questionlist">-->
+    <!--        update questionlist set-->
+    <!--                QS_PRJCode = #{QS_PRJCode},-->
+    <!--                QS_QuestionID = #{QS_QuestionID},-->
+    <!--                QS_Description = #{QS_Description},-->
+    <!--                QS_DelayTime = #{QS_DelayTime},-->
+    <!--                QS_Responer = #{QS_Responer},-->
+    <!--                QS_TaskCode = #{QS_TaskCode},-->
+    <!--                QS_SupportDept = #{QS_SupportDept},-->
+    <!--                QS_OpenClose = #{QS_OpenClose},-->
+    <!--                QS_ReasonType = #{QS_ReasonType},-->
+    <!--                QS_Reason = #{QS_Reason},-->
+    <!--                QS_ActionType = #{QS_ActionType},-->
+    <!--                QS_Action = #{QS_Action},-->
+    <!--                QS_NewPlan = #{QS_NewPlan},-->
+    <!--                QS_AddressInfo = #{QS_AddressInfo},-->
+    <!--                QS_Note = #{QS_Note},-->
+    <!--                QS_UPDATED_TIME = #{QS_UPDATED_TIME},-->
+    <!--                QS_CREATED_BY = #{QS_CREATED_BY}-->
+    <!--        where-->
+    <!--            QS_ID = #{QS_ID}-->
+    <!--    </update>-->
+
+
+    <select id="AllQuestion" resultType="com.MRYIN.pojo.Questionlist">
+       SELECT
+            QS_ID,
+            QS_PRJCode,
+            QS_QuestionID,
+            QS_Description,
+            QS_DelayTime,
+            QS_Responer,
+            QS_SupportDept,
+            QS_ReasonType,
+            QS_Reason,
+            QS_ActionType,
+            QS_Action,
+            QS_NewPlan,
+            QS_AddressInfo,
+            QS_Note,
+            QS_OpenClose,
+            QS_CREATED_TIME,
+            QS_UPDATED_TIME,
+            QS_CREATED_BY
+          FROM
+            questionlist
+          ORDER BY IFNULL(
+               QS_UPDATED_TIME,
+               QS_CREATED_TIME
+          ) DESC
+    </select>
+    <!--根据更新时间的倒叙来排列，如果没有就根据创建时间的倒叙来排列
+    ORDER BY IFNULL(
+       QS_UPDATED_TIME,
+       QS_CREATED_TIME
+   ) DESC-->
+
+
+    <select id="getQuestionByPRJCode" parameterType="java.lang.Integer" resultType="com.MRYIN.pojo.Questionlist">
+        select
+            QS_ID,
+            QS_PRJCode,
+            QS_QuestionID,
+            QS_Description,
+            QS_DelayTime,
+            QS_Responer,
+            QS_SupportDept,
+            QS_ReasonType,
+            QS_Reason,
+            QS_ActionType,
+            QS_Action,
+            QS_NewPlan,
+            QS_AddressInfo,
+            QS_Note,
+            QS_OpenClose,
+            QS_CREATED_TIME,
+            QS_CREATED_BY
+        from
+            questionlist
+        where
+            QS_ID = #{QS_ID}
+    </select>
+
+    <select id="AllQuestionByInput" parameterType="java.lang.String" resultType="com.MRYIN.pojo.Questionlist">
+        select
+            QS_ID,
+            QS_PRJCode,
+            QS_QuestionID,
+            QS_Description,
+            QS_DelayTime,
+            QS_Responer,
+            QS_SupportDept,
+            QS_ReasonType,
+            QS_Reason,
+            QS_ActionType,
+            QS_Action,
+            QS_NewPlan,
+            QS_AddressInfo,
+            QS_Note,
+            QS_OpenClose,
+            QS_CREATED_TIME,
+            QS_CREATED_BY
+        from
+            questionlist
+        where
+            QS_PRJCode LIKE concat('%',#{input},'%')
+        order by
+            QS_CREATED_TIME
+    </select>
+
+    <!--<select id="getQuestionByPRJCodeAndQuestionIDAndCODE" parameterType="java.lang.String"
+            resultType="com.MRYIN.pojo.Questionlist">
+        SELECT * FROM
+            questionlist
+        INNER JOIN
+            task
+        ON
+            questionlist.QS_PRJCode = task.TK_PRJCode
+        AND
+            questionlist.`QS_QuestionID` = task.`TK_QuestionID`
+        AND
+            task.TK_CODE = #{TK_CODE}
+    </select>-->
+
+    <select id="getQuestionByTKPRJCodeAndTKQuestionID" parameterType="java.lang.String"
+            resultType="com.MRYIN.pojo.Questionlist">
+    select
+        QS_ID,
+        QS_PRJCode,
+        QS_QuestionID,
+        QS_Description,
+        QS_DelayTime,
+        QS_Responer,
+        QS_SupportDept,
+        QS_ReasonType,
+        QS_Reason,
+        QS_ActionType,
+        QS_Action,
+        QS_NewPlan,
+        QS_AddressInfo,
+        QS_Note,
+        QS_OpenClose,
+        QS_CREATED_TIME,
+        QS_CREATED_BY
+    from
+        questionlist
+    where
+    QS_PRJCode = #{TK_PRJCode} and QS_QuestionID = #{TK_QuestionID}
+    </select>
+
+    <select id="getQuestionByPRJCodeAndQuestionID" parameterType="java.lang.String"
+            resultType="com.MRYIN.pojo.Questionlist">
+        select
+            QS_ID,
+            QS_PRJCode,
+            QS_QuestionID,
+            QS_Description,
+            QS_DelayTime,
+            QS_Responer,
+            QS_SupportDept,
+            QS_ReasonType,
+            QS_Reason,
+            QS_ActionType,
+            QS_Action,
+            QS_NewPlan,
+            QS_AddressInfo,
+            QS_Note,
+            QS_OpenClose,
+            QS_CREATED_TIME,
+            QS_CREATED_BY
+        from
+            questionlist
+        where
+            QS_PRJCode = #{QS_PRJCode} and QS_QuestionID = #{QS_QuestionID}
+    </select>
+
+    <select id="getAllUnfinishedQuestion" resultType="java.lang.Integer">
+        select count(*) from questionlist where QS_OpenClose = 0
+    </select>
+
+
+</mapper>

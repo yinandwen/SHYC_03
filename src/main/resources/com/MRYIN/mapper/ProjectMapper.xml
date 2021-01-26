@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.MRYIN.mapper.ProjectMapper">
+    <insert id="addProject" parameterType="com.MRYIN.pojo.ProjectOrders">
+        insert into project(
+            PRJ_CODE,
+            PRJ_ALL_TASKS,
+            PRJ_MANAGER_ID,
+            PRJ_START_DATE,
+            PRJ_DELIVERY_DATE,
+            PRJ_SITUATION
+        )
+        values
+            (
+                #{PRJ_CODE},
+                #{PRJ_ALL_TASKS},
+                #{PRJ_MANAGER_ID},
+                #{PRJ_START_DATE},
+                #{PRJ_DELIVERY_DATE},
+                #{PRJ_SITUATION}
+            )
+    </insert>
+
+
+    <delete id="deleteProject" parameterType="java.lang.Integer">
+        delete from project where PRJ_ID = #{PRJ_ID}
+    </delete>
+
+    <update id="updateProject" parameterType="com.MRYIN.pojo.ProjectOrders">
+        update project set
+            PRJ_CODE = #{PRJ_CODE},
+            PRJ_MANAGER_ID = #{PRJ_MANAGER_ID},
+            PRJ_START_DATE = #{PRJ_START_DATE},
+            PRJ_DELIVERY_DATE = #{PRJ_DELIVERY_DATE},
+            PRJ_SITUATION = #{PRJ_SITUATION},
+            PRJ_FINISH_RATE = #{PRJ_FINISH_RATE},
+            PRJ_ALL_TASKS=#{PRJ_ALL_TASKS}
+        where
+            PRJ_ID = #{PRJ_ID}
+    </update>
+
+
+    <select id="queryByOrdersISNULL" resultType="com.MRYIN.pojo.ProjectOrders">
+            SELECT
+                PRJ_ID,
+                PRJ_CODE,
+                PO_NAME,
+                PO_PROTYPE,
+                PRJ_MANAGER_ID,
+                PRJ_START_DATE,
+                PRJ_DELIVERY_DATE,
+                PRJ_ALL_TASKS,
+                PRJ_SITUATION,
+                PO_CUSTOMER,
+                PO_Details,
+                PO_SALESMAN,
+                PO_NOTE,
+                PO_ID,
+                PRJ_FINISH_RATE
+		    FROM orders , project WHERE orders.PO_PRJCODE = project.PRJ_CODE
+    </select>
+
+
+    <select id="queryAllProjectByLimit" resultType="com.MRYIN.pojo.ProjectOrders" parameterType="java.lang.Integer">
+            SELECT
+                PRJ_ID,
+                PRJ_CODE,
+                PO_NAME,
+                PO_PROTYPE,
+                PRJ_MANAGER_ID,
+                PRJ_START_DATE,
+                PRJ_DELIVERY_DATE,
+                PRJ_ALL_TASKS,
+                PRJ_SITUATION,
+                PO_CUSTOMER,
+                PO_Details,
+                PO_SALESMAN,
+                PO_NOTE,
+                PO_ID,
+                PRJ_FINISH_RATE
+            FROM orders , project WHERE orders.PO_PRJCODE = project.PRJ_CODE
+		    limit
+		        #{page},#{limit}
+
+    </select>
+
+    <!--找到待立项的，就是orders表中的PO_PRJCODE 为null-->
+    <select id="treeSearchBySelect" resultType="com.MRYIN.pojo.Orders">
+        SELECT
+          PO_ID,
+          PO_CUSTOMER,
+          PO_NAME,
+          PO_PROTYPE,
+          PO_DETAILS,
+          PO_DeliveyA,
+          PO_SALESMAN,
+          PO_Digou,
+          PO_NOTE
+        FROM
+	        orders
+        WHERE
+	        PO_PRJCODE IS NULL
+	    OR
+	        PO_PRJCODE = ""
+    </select>
+
+    <!--除去待立项的其余选择-->
+    <select id="treeSearchBySelectOther" resultType="com.MRYIN.pojo.ProjectOrders" parameterType="java.lang.String">
+        SELECT
+            PRJ_ID,
+            PRJ_CODE,
+            PO_NAME,
+            PO_PROTYPE,
+            PRJ_MANAGER_ID,
+            PRJ_START_DATE,
+            PRJ_DELIVERY_DATE,
+            PRJ_ALL_TASKS,
+            PRJ_SITUATION,
+            PO_CUSTOMER,
+            PO_Details,
+            PO_SALESMAN,
+            PO_NOTE,
+            PO_ID,
+            PRJ_FINISH_RATE
+        FROM orders , project
+        WHERE
+            orders.PO_PRJCODE = project.PRJ_CODE
+        AND
+            PRJ_SITUATION LIKE CONCAT('%',#{search_3},'%')
+        AND
+            CONCAT(PRJ_CODE,PO_SALESMAN,PRJ_MANAGER_ID,PO_CUSTOMER,PO_ID) LIKE CONCAT('%',#{search_4},'%')
+    </select>
+
+
+
+    <select id="queryByPRJ_ID" resultType="com.MRYIN.pojo.ProjectOrders" parameterType="java.lang.Integer">
+        SELECT
+            PRJ_ID,
+            PRJ_CODE,
+            PRJ_ALL_TASKS,
+            PRJ_MANAGER_ID,
+            PRJ_START_DATE,
+            PRJ_DELIVERY_DATE,
+            PRJ_SITUATION,
+            PRJ_FINISH_RATE
+        FROM
+	        project
+        WHERE
+	        PRJ_ID = #{PRJ_ID}
+    </select>
+
+    <!--查询该项目的所有任务个数-->
+    <select id="queryAllTaskForProject" resultType="java.lang.Integer" parameterType="java.lang.String">
+        SELECT COUNT(*) FROM (SELECT
+            PRJ_ID,
+            PRJ_CODE,
+            PO_NAME,
+            PO_PROTYPE,
+            PRJ_MANAGER_ID,
+            PRJ_START_DATE,
+            PRJ_DELIVERY_DATE,
+            PRJ_ALL_TASKS,
+            PRJ_SITUATION,
+            PO_CUSTOMER,
+            PO_Details,
+            PO_SALESMAN,
+            PO_NOTE,
+            PO_ID,
+            PRJ_FINISH_RATE
+            FROM orders , project WHERE orders.PO_PRJCODE = project.PRJ_CODE AND project.PRJ_CODE = #{PRJ_CODE}) a , task t
+            WHERE a.PRJ_CODE = t.TK_PRJCode
+    </select>
+
+    <!--查询该项目的所有未完成的任务个数-->
+    <select id="queryAllTaskForProjectByFinish" resultType="java.lang.Integer" parameterType="java.lang.String">
+        SELECT COUNT(*) FROM (SELECT
+            PRJ_ID,
+            PRJ_CODE,
+            PO_NAME,
+            PO_PROTYPE,
+            PRJ_MANAGER_ID,
+            PRJ_START_DATE,
+            PRJ_DELIVERY_DATE,
+            PRJ_ALL_TASKS,
+            PRJ_SITUATION,
+            PO_CUSTOMER,
+            PO_Details,
+            PO_SALESMAN,
+            PO_NOTE,
+            PO_ID,
+            PRJ_FINISH_RATE
+            FROM orders , project WHERE orders.PO_PRJCODE = project.PRJ_CODE AND project.PRJ_CODE = #{PRJ_CODE}) a , task t
+            WHERE a.PRJ_CODE = t.TK_PRJCode AND a.PO_NAME = t.TK_PRJName AND t.TK_STATUS = 1
+    </select>
+
+
+</mapper>
